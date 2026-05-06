@@ -1,6 +1,7 @@
 /* Genel Ayarlar */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Garaj ve Teknoloji havası veren koyu gradyan */
     background: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
     color: white;
     margin: 0;
@@ -17,12 +18,12 @@ header {
 
 h1 {
     letter-spacing: 3px;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #007bff; /* Modif AI Mavisi */
     padding-bottom: 10px;
     font-weight: 300;
 }
 
-/* 3'lü Yapı */
+/* 3'lü Yan Yana Yapı */
 .konteynir {
     display: flex;
     justify-content: center;
@@ -33,7 +34,7 @@ h1 {
     margin-bottom: 50px;
 }
 
-/* Modern Cam Efekti Kartlar */
+/* Modern Cam Efekti (Glassmorphism) */
 .kart {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(10px);
@@ -55,10 +56,9 @@ h1 {
 .kart h2 {
     margin-bottom: 30px;
     font-size: 1.6rem;
-    color: #fff;
 }
 
-/* Linklerin Düzeni */
+/* Linkler */
 .iletisim-baglantilari {
     display: flex;
     flex-direction: column;
@@ -68,7 +68,6 @@ h1 {
 .iletisim-baglantilari a {
     color: #bbb;
     text-decoration: none;
-    font-size: 1rem;
     padding: 12px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
@@ -82,10 +81,9 @@ h1 {
 .iletisim-baglantilari a:hover {
     background-color: #007bff;
     color: white;
-    transform: scale(1.05);
 }
 
-/* Mobil Uyumluluk */
+/* Telefonlar için alt alta gelme ayarı */
 @media (max-width: 850px) {
     .konteynir {
         flex-direction: column;
