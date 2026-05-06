@@ -9,9 +9,9 @@ body, html {
     overflow-x: hidden;
 }
 
-/* Garaj Arka Planı (Araba Yok) */
+/* Garaj Arka Planı (Arabalı Versiyon Geri Döndü) */
 body {
-    background-image: url('https://media.istockphoto.com/id/1389869879/photo/home-garage-interior-background-with-open-door.jpg?s=612x612&w=0&k=20&c=VEpwpIq57s_ICXIkl0Dfymx1gw_SnKbPlevWO9g-fMw=');
+    background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -20,7 +20,7 @@ body {
     align-items: center;
 }
 
-/* Görselin üzerine karanlık bir katman (yazılar okunsun diye) */
+/* Görselin üzerine karanlık bir katman */
 .garaj-katmani {
     position: fixed;
     top: 0;
@@ -75,10 +75,20 @@ header {
     background: rgba(255, 255, 255, 0.08);
 }
 
-.profil-ikon {
-    font-size: 3rem;
-    color: #007bff;
+/* Yuvarlak Profil Fotoğrafı Ayarları */
+.profil-foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Resmi tam yuvarlak yapar */
+    object-fit: cover; /* Resmin orantısını bozmadan içine sığdırır */
+    border: 3px solid #007bff; /* Mavi çerçeve */
     margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5); /* Mavi parlama efekti */
+    transition: transform 0.3s ease;
+}
+
+.profil-foto:hover {
+    transform: scale(1.1); /* Fareyle üzerine gelince hafif büyür */
 }
 
 .kart h2 {
