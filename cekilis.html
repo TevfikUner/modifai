@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modif AI - Çekilişe Katıl</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .form-kutusu { 
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 40px 30px; 
+            border-radius: 20px; 
+            border: 1px solid #007bff; 
+            width: 90%; 
+            max-width: 400px; 
+            margin: 50px auto; 
+            text-align: center; 
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+        .form-kutusu h2 { margin-top: 0; margin-bottom: 25px; font-weight: 400; }
+        .form-kutusu input { 
+            width: 90%; 
+            padding: 15px; 
+            margin: 10px 0; 
+            border-radius: 10px; 
+            border: 1px solid rgba(255,255,255,0.2); 
+            background: rgba(0,0,0,0.5); 
+            color: white; 
+            font-size: 1rem; 
+        }
+        .katil-btn { 
+            background: #007bff; 
+            color: white; 
+            border: none; 
+            padding: 15px; 
+            width: 100%; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            font-size: 1.1rem; 
+            font-weight: bold; 
+            margin-top: 15px; 
+            transition: 0.3s; 
+        }
+        .katil-btn:hover { 
+            background: #0056b3; 
+            transform: scale(1.05); 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="garaj-katmani"></div>
+    
+    <header>
+        <h1 class="baslik">MODIF AI ÇEKİLİŞ</h1>
+    </header>
+
+    <div class="form-kutusu">
+        <h2>Kayıt Formu</h2>
+        <input type="text" id="kullanici_ad" placeholder="Adınız Soyadınız">
+        <input type="email" id="kullanici_mail" placeholder="E-posta Adresiniz">
+        <button class="katil-btn" id="kayit_buton">KATILIMI ONAYLA</button>
+        <p id="mesaj_dugum" style="margin-top:15px; font-weight:bold;"></p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        // Sorgu yapabilmek için query, where ve getDocs fonksiyonlarını kütüphaneye ekledik
+        import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAK-Qt0nT_zF6neKPCRyE-4vgFFW91ZadY",
+            authDomain: "modifai-cekilis.firebaseapp.com",
+            projectId: "modifai-cekilis",
+            storageBucket: "modifai-cekilis.firebasestorage.app",
+            messagingSenderId: "569243536908",
+            appId: "1:569243536908:web:b263e448504ce865b3a829",
+            measurementId: "G-FPEN5Q8MZS"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById("kayit_buton").addEventListener("click", async function() {
+            const ad = document.getElementById("kullanici_ad").value;
+            const mail = document.getElementById("kullanici_mail").value;
+            const mesajDugum = document.getElementById("mesaj_dugum");
+
+            if(ad !== "" && mail !== "") {
+                mesajDugum.innerText = "Sistem kontrol ediliyor...";
+                mesajDugum.style.color = "#ffcc00"; 
+                
+                try {
+                    const koleksiyon = collection(db, "katilimcilar");
+                    
+                    // Veritabanında bu mail adresiyle eşleşen bir düğüm var mı diye sorguluyoruz
+                    const sorguDugum = query(koleksiyon, where("eposta", "==", mail));
+                    const sonucGecici = await getDocs(sorguDugum);
+                    
+                    if (!sonucGecici.empty) {
+                        // Eğer sonuç boş değilse, bu kişi zaten kayıtlı demektir
+                        mesajDugum.innerText = "Kanki bu mail adresiyle zaten çekilişe katılmışsın!";
+                        mesajDugum.style.color = "red";
+                    } else {
+                        // Sonuç boşsa ilk defa katılıyordur, sisteme ekliyoruz
+                        await addDoc(koleksiyon, {
+                            isim: ad,
+                            eposta: mail,
+                            tarih: new Date()
+                        });
+                        
+                        mesajDugum.innerText = "Başarıyla katıldınız! Bol şans.";
+                        mesajDugum.style.color = "#00ff00"; 
+                        
+                        document.getElementById("kullanici_ad").value = "";
+                        document.getElementById("kullanici_mail").value = "";
+                    }
+                    
+                } catch (e) {
+                    mesajDugum.innerText = "Bağlantı hatası oluştu, tekrar dene kanki.";
+                    mesajDugum.style.color = "red";
+                }
+            } else {
+                mesajDugum.innerText = "Lütfen ad ve e-posta alanlarını doldur.";
+                mesajDugum.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>
