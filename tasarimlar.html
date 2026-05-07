@@ -19,43 +19,52 @@
         .ust-menu-baslik { font-size: 1.3rem; font-weight: 800; letter-spacing: 2px; color: white; }
 
         .sayfa-baslik { text-align: center; font-size: 2.2rem; font-weight: 800; letter-spacing: 3px; margin: 30px 0 5px; text-shadow: 0 2px 15px rgba(0, 123, 255, 0.8); }
-        .sayfa-aciklama { text-align: center; color: #f0f0f0; font-size: 0.95rem; margin-bottom: 25px; padding: 0 20px; }
+        .sayfa-aciklama { text-align: center; color: #f0f0f0; font-size: 0.95rem; margin-bottom: 25px; padding: 0 20px; font-weight: 500; }
 
         .tasarim-konteynir { display: flex; justify-content: center; width: 95%; max-width: 1000px; margin: 0 auto 50px; }
-        .tasarim-kart { background: rgba(0, 0, 0, 0.75); border: 2px solid #007bff; border-radius: 25px; padding: 25px; width: 100%; backdrop-filter: blur(25px); box-shadow: 0 20px 50px rgba(0,0,0,1); text-align: center; }
+        .tasarim-kart { background: rgba(0, 0, 0, 0.75); border: 2px solid #007bff; border-radius: 25px; padding: 25px; width: 100%; backdrop-filter: blur(25px); box-shadow: 0 20px 50px rgba(0,0,0,1); text-align: center; position: relative; }
         .tasarim-kart h3 { color: #00d2ff; font-size: 1.6rem; font-weight: 800; margin-bottom: 20px; letter-spacing: 1px; }
         
-        /* MEDYA ALANI GÜNCELLEMESİ */
         .medya-alani { 
             width: 100%; 
-            height: 400px; /* PC için ideal */
+            height: 400px; 
             border-radius: 15px; 
             overflow: hidden; 
             margin-bottom: 25px; 
             position: relative; 
-            background: #000;
+            background: #050505;
             border: 1px solid rgba(255,255,255,0.15); 
         }
         
-        /* FOTOĞRAFIN BOŞLUKLARINI YOK EDEN SİHİR */
-        #resim_a { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; /* Resmi kutuya tam yayar, siyah boşluk bırakmaz */
-            object-position: center; 
-            display: block; 
-        }
-        
+        /* GÖRSEL VE MODEL STİLLERİ */
+        #resim_a { width: 100%; height: 100%; object-fit: cover; object-position: center; display: none; } /* İlk başta gizli, yüklenince açılacak */
         #model_a { width: 100%; height: 100%; display: none; background-color: transparent; }
+
+        /* YÜKLENİYOR EKRANI */
+        .yukleniyor-ekrani {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: #0a0a0a; z-index: 10; transition: opacity 0.5s ease;
+        }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 5px solid rgba(0, 123, 255, 0.2);
+            border-top: 5px solid #00d2ff;
+            border-radius: 50%;
+            animation: don_dugum 1s linear infinite;
+            margin-bottom: 15px;
+        }
+        .yukleniyor-metin { color: #f0f0f0; font-size: 1rem; font-weight: 600; text-align: center; padding: 0 20px; }
+
+        @keyframes don_dugum { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         .ai-buton { background: linear-gradient(45deg, #007bff, #00d2ff); color: white; border: none; padding: 15px 35px; border-radius: 100px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4); }
 
-        /* MOBİL ÖZEL AYARLAR */
         @media (max-width: 600px) {
-            .medya-alani { height: 300px; } /* Telefondan girince kutu küçülür, ekranı kaplamaz */
+            .medya-alani { height: 300px; }
             .sayfa-baslik { font-size: 1.8rem; }
             .tasarim-kart { padding: 20px; }
-            .tasarim-kart h3 { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -71,13 +80,18 @@
     </nav>
 
     <h1 class="sayfa-baslik">SANAL GARAJ</h1>
-    <p class="sayfa-aciklama">Porsche 911 Carrera 4S: Yapay Zeka Dönüşümü</p>
+    <p class="sayfa-aciklama">Geleceğin otomobilini keşfetmek üzeresiniz.</p>
 
     <div class="tasarim-konteynir">
         <div class="tasarim-kart">
             <h3>Porsche 911 Carrera 4S</h3>
             <div class="medya-alani">
-                <img src="araba_ilk.jpg" alt="Porsche 2D" id="resim_a">
+                <div id="loading_overlay" class="yukleniyor-ekrani">
+                    <div class="spinner"></div>
+                    <div class="yukleniyor-metin">Görsel ve 360° görünüm hazırlanıyor,<br>lütfen bekleyiniz...</div>
+                </div>
+
+                <img src="araba_ilk.jpg" alt="Porsche 2D" id="resim_a" onload="ilkYuklemeTamam_dugum()">
                 <model-viewer id="model_a" src="araba.glb" auto-rotate camera-controls shadow-intensity="1" exposure="1" loading="eager"></model-viewer>
             </div>
             <button class="ai-buton" id="btn_a" onclick="modeGecis_dugum()">
@@ -87,10 +101,22 @@
     </div>
 
     <script>
+        // Sayfa açıldığında resim yüklenince loader'ı kaldır
+        function ilkYuklemeTamam_dugum() {
+            const loader = document.getElementById("loading_overlay");
+            const resim = document.getElementById("resim_a");
+            loader.style.opacity = "0";
+            setTimeout(() => {
+                loader.style.display = "none";
+                resim.style.display = "block";
+            }, 500);
+        }
+
         function modeGecis_dugum() {
             let resim = document.getElementById("resim_a");
             let model = document.getElementById("model_a");
             let btn = document.getElementById("btn_a");
+            
             if (resim.style.display !== "none") {
                 resim.style.display = "none";
                 model.style.display = "block";
