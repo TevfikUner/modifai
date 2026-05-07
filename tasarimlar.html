@@ -6,6 +6,7 @@
     <title>MODIF-AI - Örnek Tasarımlar</title>
     <link rel="icon" href="logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
     <style>
@@ -13,11 +14,20 @@
         body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
         .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
 
-        .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; }
-        .ust-menu-sol { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .ust-menu-logo { width: 35px; height: 35px; border-radius: 50%; border: 2px solid #007bff; }
-        .ust-menu-baslik { font-size: 1.3rem; font-weight: 800; letter-spacing: 2px; color: white; }
+        /* KLASİK NAVBAR (Ana sayfayla uyumlu) */
+        .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; transition: 0.3s; }
+        .ust-menu-sol { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; }
+        .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
+        .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .hamburger-buton { font-size: 1.8rem; color: white; cursor: pointer; transition: 0.3s; }
 
+        /* YAN MENÜ (SAĞDAN AÇILAN KLASİK) */
+        .yan-menu { position: fixed; top: 0; right: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-left: 2px solid #007bff; box-shadow: -10px 0 30px rgba(0,0,0,0.8); z-index: 1000; transition: right 0.4s ease; display: flex; flex-direction: column; padding-top: 80px; }
+        .menu-kapat-buton { position: absolute; top: 25px; left: 25px; font-size: 2rem; color: white; cursor: pointer; }
+        .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; align-items: center; gap: 15px; }
+        .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); color: #00d2ff; }
+
+        /* SAYFA İÇERİĞİ */
         .sayfa-baslik { text-align: center; font-size: 2.2rem; font-weight: 800; letter-spacing: 3px; margin: 30px 0 5px; text-shadow: 0 2px 15px rgba(0, 123, 255, 0.8); }
         .sayfa-aciklama { text-align: center; color: #f0f0f0; font-size: 0.95rem; margin-bottom: 25px; padding: 0 20px; font-weight: 500; }
 
@@ -36,11 +46,10 @@
             border: 1px solid rgba(255,255,255,0.15); 
         }
         
-        /* GÖRSEL VE MODEL STİLLERİ */
-        #resim_a { width: 100%; height: 100%; object-fit: cover; object-position: center; display: none; } /* İlk başta gizli, yüklenince açılacak */
+        #resim_a { width: 100%; height: 100%; object-fit: cover; object-position: center; display: none; } 
         #model_a { width: 100%; height: 100%; display: none; background-color: transparent; }
 
-        /* YÜKLENİYOR EKRANI */
+        /* YÜKLENİYOR EKRANI (Ortak Sınıf) */
         .yukleniyor-ekrani {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -65,6 +74,8 @@
             .medya-alani { height: 300px; }
             .sayfa-baslik { font-size: 1.8rem; }
             .tasarim-kart { padding: 20px; }
+            .ust-menu-baslik { font-size: 1.3rem; }
+            .ust-menu-logo { width: 35px; height: 35px; }
         }
     </style>
 </head>
@@ -77,7 +88,18 @@
             <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
             <span class="ust-menu-baslik">MODIF-AI</span>
         </a>
+        <i class="fas fa-bars hamburger-buton" onclick="menuKontrol_dugum()"></i>
     </nav>
+
+    <div id="yan_menu_dugum" class="yan-menu">
+        <i class="fas fa-times menu-kapat-buton" onclick="menuKontrol_dugum()"></i>
+        <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
+        <a href="detaylar.html"><i class="fas fa-rocket"></i> Proje Detayları</a>
+        <a href="tasarimlar.html"><i class="fas fa-images"></i> Örnek Tasarımlar</a>
+        <a href="mimari.html"><i class="fas fa-server"></i> Sistem Mimarisi</a>
+        <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
+        <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
+    </div>
 
     <h1 class="sayfa-baslik">SANAL GARAJ</h1>
     <p class="sayfa-aciklama">Geleceğin otomobilini keşfetmek üzeresiniz.</p>
@@ -86,13 +108,21 @@
         <div class="tasarim-kart">
             <h3>Porsche 911 Carrera 4S</h3>
             <div class="medya-alani">
-                <div id="loading_overlay" class="yukleniyor-ekrani">
+                
+                <div id="loading_overlay_2d" class="yukleniyor-ekrani">
                     <div class="spinner"></div>
-                    <div class="yukleniyor-metin">Görsel ve 360° görünüm hazırlanıyor,<br>lütfen bekleyiniz...</div>
+                    <div class="yukleniyor-metin">Görsel hazırlanıyor,<br>lütfen bekleyiniz...</div>
                 </div>
 
                 <img src="araba_ilk.jpg" alt="Porsche 2D" id="resim_a" onload="ilkYuklemeTamam_dugum()">
-                <model-viewer id="model_a" src="araba.glb" auto-rotate camera-controls shadow-intensity="1" exposure="1" loading="eager"></model-viewer>
+                
+                <model-viewer id="model_a" src="araba.glb" auto-rotate camera-controls shadow-intensity="1" exposure="1" loading="eager">
+                    <div slot="poster" class="yukleniyor-ekrani" style="display: flex;">
+                        <div class="spinner"></div>
+                        <div class="yukleniyor-metin">360° Model indiriliyor,<br>lütfen bekleyiniz...</div>
+                    </div>
+                </model-viewer>
+                
             </div>
             <button class="ai-buton" id="btn_a" onclick="modeGecis_dugum()">
                 <i class="fas fa-magic"></i> AI ile 360° Görünüm
@@ -101,15 +131,21 @@
     </div>
 
     <script>
-        // Sayfa açıldığında resim yüklenince loader'ı kaldır
+        function menuKontrol_dugum() {
+            let dugum = document.getElementById("yan_menu_dugum");
+            dugum.style.right = (dugum.style.right === "0px") ? "-320px" : "0px";
+        }
+
+        // 2D resim yüklendiğinde loader'ı kaldırır
         function ilkYuklemeTamam_dugum() {
-            const loader = document.getElementById("loading_overlay");
-            const resim = document.getElementById("resim_a");
-            loader.style.opacity = "0";
-            setTimeout(() => {
-                loader.style.display = "none";
-                resim.style.display = "block";
-            }, 500);
+            const loader = document.getElementById("loading_overlay_2d");
+            if(loader) {
+                loader.style.opacity = "0";
+                setTimeout(() => {
+                    loader.style.display = "none";
+                    document.getElementById("resim_a").style.display = "block";
+                }, 500);
+            }
         }
 
         function modeGecis_dugum() {
@@ -118,11 +154,13 @@
             let btn = document.getElementById("btn_a");
             
             if (resim.style.display !== "none") {
+                // 3D Ekranına Geçiş
                 resim.style.display = "none";
                 model.style.display = "block";
                 btn.innerHTML = '<i class="fas fa-undo"></i> Fotoğrafa Dön';
                 btn.style.background = "linear-gradient(45deg, #ff416c, #ff4b2b)";
             } else {
+                // 2D Ekranına Dönüş
                 resim.style.display = "block";
                 model.style.display = "none";
                 btn.innerHTML = '<i class="fas fa-magic"></i> AI ile 360° Görünüm';
