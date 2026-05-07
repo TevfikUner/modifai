@@ -3,55 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MODIF-AI - Proje Detayları</title>
+    <title>MODIF-AI - Sistem Mimarisi</title>
     <link rel="icon" href="logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; transition: 0.3s; letter-spacing: 0.5px; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow: hidden; display: flex; flex-direction: column; }
         body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
-        .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; transition: 0.3s; }
+        .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
         
-        .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; transition: 0.3s; }
-        .ust-menu-sol { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
-        .ust-menu-sol:hover { transform: scale(1.02); }
+        /* NAVBAR (Tüm sayfalarla uyumlu) */
+        .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; }
+        .ust-menu-sol { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; }
         .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
         .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
-        .hamburger-buton { font-size: 1.8rem; color: white; cursor: pointer; transition: 0.3s; }
-        .hamburger-buton:hover { color: #00d2ff; transform: scale(1.1); }
 
-        .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; box-shadow: 10px 0 30px rgba(0,0,0,0.8); z-index: 1000; transition: left 0.4s ease, background 0.3s; display: flex; flex-direction: column; padding-top: 80px; }
-        .menu-kapat-buton { position: absolute; top: 25px; right: 25px; font-size: 2rem; color: white; cursor: pointer; }
-        .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; align-items: center; gap: 15px; }
-        .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); padding-left: 40px; color: #00d2ff; border-left: 5px solid #00d2ff; }
+        /* MERKEZİ YAZI ALANI */
+        .merkez-konteynir {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
 
-        .sayfa-baslik { text-align: center; font-size: 2.8rem; font-weight: 800; letter-spacing: 5px; text-shadow: 0 2px 15px rgba(0, 123, 255, 0.8); margin: 50px 0 20px; color: #fff; }
-        
-        .icerik-alani { width: 90%; max-width: 900px; margin: 0 auto 50px; background: rgba(0, 0, 0, 0.4); padding: 40px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
-        .icerik-baslik { color: #00d2ff; font-size: 1.8rem; font-weight: 800; border-bottom: 2px solid rgba(0, 123, 255, 0.5); padding-bottom: 10px; margin-top: 30px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-        .icerik-baslik:first-child { margin-top: 0; }
-        .madde { display: flex; align-items: flex-start; gap: 15px; margin-top: 25px; }
-        .madde i { color: #007bff; font-size: 1.8rem; margin-top: 3px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-        .madde-metin h4 { margin: 0 0 8px 0; font-size: 1.3rem; color: white; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-        .madde-metin p { margin: 0; color: #f0f0f0; line-height: 1.7; font-size: 1.05rem; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .dev-yazi {
+            font-size: 4rem; /* Kocaman font */
+            font-weight: 900;
+            color: #00d2ff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 30px rgba(0, 210, 255, 0.6);
+            line-height: 1.2;
+            padding: 40px;
+            border: 3px solid #007bff;
+            border-radius: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
 
-        /* AÇIK TEMA */
-        body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.95); }
-        body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.95); border-bottom: 2px solid #ccc; }
-        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-kapat-buton { color: #007bff; text-shadow: none; }
-        body.acik-tema .yan-menu { background: rgba(255, 255, 255, 0.98); }
-        body.acik-tema .yan-menu a { color: #222; border-bottom: 1px solid #ddd; }
-        body.acik-tema .sayfa-baslik { color: #111; text-shadow: none; }
-        body.acik-tema .icerik-alani { background: rgba(255, 255, 255, 0.9); border: 1px solid #ccc; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        body.acik-tema .icerik-baslik, body.acik-tema .madde-metin h4 { color: #111; text-shadow: none; }
-        body.acik-tema .madde-metin p { color: #333; text-shadow: none; font-weight: 600; }
-        body.acik-tema .madde i { text-shadow: none; }
+        /* MOBİL UYUM */
+        @media (max-width: 768px) {
+            .dev-yazi { font-size: 2rem; padding: 20px; letter-spacing: 2px; }
+            .ust-menu-baslik { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
-    <script>
-        if(localStorage.getItem("tema_gecici") === "acik") { document.body.classList.add("acik-tema"); }
-    </script>
-
+    <script>if(localStorage.getItem("tema_gecici") === "acik") { document.body.classList.add("acik-tema"); }</script>
     <div class="garaj-katmani"></div>
 
     <nav class="ust-menu-cubugu">
@@ -59,70 +59,13 @@
             <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
             <span class="ust-menu-baslik">MODIF-AI</span>
         </a>
-        <i class="fas fa-bars hamburger-buton" onclick="menuKontrol_dugum()"></i>
     </nav>
 
-    <div id="yan_menu_dugum" class="yan-menu">
-        <i class="fas fa-times menu-kapat-buton" onclick="menuKontrol_dugum()"></i>
-        <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
-        <a href="detaylar.html"><i class="fas fa-rocket"></i> Proje Detayları</a>
-        <a href="tasarimlar.html"><i class="fas fa-images"></i> Örnek Tasarımlar</a>
-        <a href="mimari.html"><i class="fas fa-server"></i> Sistem Mimarisi</a>
-        <a href="index.html#ekip_alani"><i class="fas fa-users"></i> Geliştirici Ekip</a>
-        <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
-        <a href="cekilis.html"><i class="fas fa-gift"></i> Büyük Çekiliş</a>
-        <a href="sss.html"><i class="fas fa-question-circle"></i> S.S.S.</a>
-        <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
+    <div class="merkez-konteynir">
+        <h1 class="dev-yazi">
+            BURAYA TEKNİK DETAYLAR YAZILACAK HOJULAR!
+        </h1>
     </div>
 
-    <h1 class="sayfa-baslik">PROJEMİZ NELER VAAT EDİYOR?</h1>
-
-    <div class="icerik-alani">
-        <h3 class="icerik-baslik">Mevcut Özellikler</h3>
-        <div class="madde">
-            <i class="fas fa-camera"></i>
-            <div class="madde-metin">
-                <h4>Fotoğraftan 3D Modelleme</h4>
-                <p>Aracınızın standart bir fotoğrafını sisteme yüklediğiniz anda yapay zeka destekli algoritmalarımız fotoğrafı analiz eder ve modifiyeye hazır bir sanal taslağa dönüştürür.</p>
-            </div>
-        </div>
-        <div class="madde">
-            <i class="fas fa-paint-roller"></i>
-            <div class="madde-metin">
-                <h4>Dinamik Renk ve Parça Entegrasyonu</h4>
-                <p>Renk değişimi, jant, spoiler ve gövde kitleri gibi eklentileri saniyeler içinde aracınıza uygulayarak sonucu anında görüntüleyebilirsiniz.</p>
-            </div>
-        </div>
-
-        <h3 class="icerik-baslik">Gelecek Yol Haritası</h3>
-        <div class="madde">
-            <i class="fas fa-coins"></i>
-            <div class="madde-metin">
-                <h4>Kredi Bazlı Sistem</h4>
-                <p>Sunucu yükünü dengelemek ve adil kullanım sağlamak adına gelişmiş özelliklerin kredi sistemi ile yönetileceği ticari bir iş modeli entegrasyonu planlanmaktadır.</p>
-            </div>
-        </div>
-        <div class="madde">
-            <i class="fas fa-vr-cardboard"></i>
-            <div class="madde-metin">
-                <h4>AR (Artırılmış Gerçeklik) Desteği</h4>
-                <p>Tasarladığınız aracı telefon kameranız aracılığıyla kendi garajınızda veya sokağınızda 1:1 ölçekli olarak gerçek dünyada görüntüleyebileceksiniz.</p>
-            </div>
-        </div>
-        <div class="madde">
-            <i class="fas fa-store"></i>
-            <div class="madde-metin">
-                <h4>Parça Tedarikçi Entegrasyonu</h4>
-                <p>Kullanıcılar beğendikleri tasarımlardaki parçaları doğrudan sistem üzerinden satın alabilecekleri e-ticaret altyapısına kavuşacak.</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function menuKontrol_dugum() {
-            let dugum = document.getElementById("yan_menu_dugum");
-            dugum.style.left = (dugum.style.left === "0px") ? "-320px" : "0px";
-        }
-    </script>
 </body>
 </html>
