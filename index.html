@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modif-AI - Ekibimiz</title>
+    
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -136,87 +139,3 @@
             <div class="sayac-merkez">
                 <div class="ust-birim">
                     <span id="gun_dugum">0</span>
-                    <small>GÜN</small>
-                </div>
-                <div class="alt-birimler">
-                    <div class="alt-birim">
-                        <span id="saat_dugum">00</span>
-                        <small>SAAT</small>
-                    </div>
-                    <div class="alt-birim">
-                        <span id="dakika_dugum">00</span>
-                        <small>DAKİKA</small>
-                    </div>
-                    <div class="alt-birim">
-                        <span id="saniye_dugum">00</span>
-                        <small>SANİYE</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <header>
-        <h1 class="baslik">MODIF-AI EKİBİ</h1>
-    </header>
-
-    <div class="konteynir">
-        <div class="kart">
-            <img src="tevfik.jpeg" alt="Tevfik Üner" class="profil-foto">
-            <h2>Tevfik Üner</h2>
-            <div class="iletisim-baglantilari">
-                <a href="mailto:tevfikuner0@gmail.com"><i class="fas fa-envelope"></i> Mail</a>
-                <a href="https://www.linkedin.com/in/tevfikuner" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/TevfikUner" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-        </div>
-
-        <div class="kart">
-            <img src="emirhan.jpeg" alt="Emirhan Kar" class="profil-foto">
-            <h2>Emirhan Kar</h2>
-            <div class="iletisim-baglantilari">
-                <a href="mailto:emirhankar5434@gmail.com"><i class="fas fa-envelope"></i> Mail</a>
-                <a href="https://www.linkedin.com/in/emirhan-kar-9b9662208/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/EmirhanKar" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-        </div>
-
-        <div class="kart">
-            <img src="furkan.jpeg" alt="Furkan Genç" class="profil-foto">
-            <h2>Furkan Genç</h2>
-            <div class="iletisim-baglantilari">
-                <a href="mailto:furkann.gencc7@gmail.com"><i class="fas fa-envelope"></i> Mail</a>
-                <a href="https://www.linkedin.com/in/furkan-gen%C3%A7-9b0784228/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/FurkanGencc" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Hedef: 13 Mayıs 17:00 Türkiye Saati (+03:00)
-        const hedefTarih = new Date("May 13, 2026 17:00:00 +0300").getTime(); 
-
-        const sayacGecici = setInterval(function() {
-            const simdi = new Date().getTime();
-            const kalanZaman = hedefTarih - simdi;
-
-            if (kalanZaman < 0) {
-                clearInterval(sayacGecici);
-                document.getElementById("sayac_alani_dugum").innerHTML = "<h2 style='color:#00ff00; margin:0; text-shadow: 0 0 15px #00ff00;'>ÇEKİLİŞ BAŞLADI!</h2>";
-                return;
-            }
-
-            const gun = Math.floor(kalanZaman / (1000 * 60 * 60 * 24));
-            const saat = Math.floor((kalanZaman % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const dakika = Math.floor((kalanZaman % (1000 * 60 * 60)) / (1000 * 60));
-            const saniye = Math.floor((kalanZaman % (1000 * 60)) / 1000);
-
-            document.getElementById("gun_dugum").innerText = gun;
-            document.getElementById("saat_dugum").innerText = saat < 10 ? "0" + saat : saat;
-            document.getElementById("dakika_dugum").innerText = dakika < 10 ? "0" + dakika : dakika;
-            document.getElementById("saniye_dugum").innerText = saniye < 10 ? "0" + saniye : saniye;
-
-        }, 1000); 
-    </script>
-</body>
-</html>
