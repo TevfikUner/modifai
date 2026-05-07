@@ -7,41 +7,46 @@
     <link rel="icon" href="logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; transition: 0.3s; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; transition: 0.3s; letter-spacing: 0.5px; }
         body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
         .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; transition: 0.3s; }
 
-        /* Navbar & Sidebar */
         .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; transition: 0.3s; }
-        .ust-menu-sol { display: flex; align-items: center; gap: 15px; }
+        .ust-menu-sol { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
+        .ust-menu-sol:hover { transform: scale(1.02); }
         .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
-        .ust-menu-baslik { font-size: 1.5rem; font-weight: bold; letter-spacing: 3px; color: white; }
+        .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
         .hamburger-buton { font-size: 1.8rem; color: white; cursor: pointer; }
+        
         .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; z-index: 1000; transition: left 0.4s ease; display: flex; flex-direction: column; padding-top: 80px; }
-        .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 15px; transition: 0.3s; }
+        .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 15px; transition: 0.3s; }
         .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); color: #00d2ff; border-left: 5px solid #00d2ff; }
 
-        /* SSS İçerik */
-        .sayfa-baslik { text-align: center; font-size: 2.5rem; letter-spacing: 5px; margin: 40px 0; text-shadow: 0 0 15px #007bff; }
+        .sayfa-baslik { text-align: center; font-size: 2.8rem; font-weight: 800; letter-spacing: 5px; text-shadow: 0 2px 15px rgba(0, 123, 255, 0.8); margin: 50px 0 30px; color: #fff; }
         .sss-konteynir { width: 90%; max-width: 900px; margin: 0 auto 50px; }
         
-        .sss-kart { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; margin-bottom: 15px; overflow: hidden; backdrop-filter: blur(15px); transition: 0.3s; }
-        .sss-soru { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #00d2ff; font-size: 1.1rem; }
-        .sss-cevap { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; color: #ccc; line-height: 1.6; }
+        .sss-kart { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 15px; margin-bottom: 15px; overflow: hidden; backdrop-filter: blur(15px); transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .sss-soru { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 700; color: #00d2ff; font-size: 1.2rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
         
-        .sss-kart.aktif { border-color: #007bff; background: rgba(0, 123, 255, 0.05); }
-        .sss-kart.aktif .sss-cevap { max-height: 200px; padding: 0 25px 25px 25px; }
+        /* PARLAK VE NET CEVAP YAZILARI EKLENDİ */
+        .sss-cevap { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; color: #f0f0f0; line-height: 1.7; font-size: 1.05rem; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        
+        .sss-kart.aktif { border-color: #00d2ff; background: rgba(0, 123, 255, 0.1); box-shadow: 0 10px 30px rgba(0, 210, 255, 0.3); }
+        .sss-kart.aktif .sss-cevap { max-height: 250px; padding: 0 25px 25px 25px; }
         .sss-kart.aktif i { transform: rotate(180deg); color: white; }
 
         /* AÇIK TEMA */
-        body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.9); }
-        body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.85); color: #333; }
-        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton { color: #007bff; }
-        body.acik-tema .yan-menu { background: white; }
-        body.acik-tema .yan-menu a { color: #333; border-bottom: 1px solid #eee; }
-        body.acik-tema .sayfa-baslik { color: #222; text-shadow: none; }
-        body.acik-tema .sss-kart { background: white; border: 1px solid #ddd; }
-        body.acik-tema .sss-cevap { color: #555; }
+        body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.95); }
+        body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.95); border-bottom: 2px solid #ccc; }
+        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton { color: #007bff; text-shadow: none; }
+        body.acik-tema .yan-menu { background: rgba(255, 255, 255, 0.98); }
+        body.acik-tema .yan-menu a { color: #222; border-bottom: 1px solid #ddd; font-weight: 600; }
+        body.acik-tema .sayfa-baslik { color: #111; text-shadow: none; }
+        body.acik-tema .sss-kart { background: rgba(255, 255, 255, 0.9); border: 1px solid #ccc; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        body.acik-tema .sss-soru { color: #007bff; text-shadow: none; font-weight: 800; }
+        body.acik-tema .sss-cevap { color: #333; text-shadow: none; font-weight: 600; }
+        body.acik-tema .sss-kart.aktif { border-color: #007bff; background: rgba(0, 123, 255, 0.05); box-shadow: 0 5px 15px rgba(0, 123, 255, 0.1); }
+        body.acik-tema .sss-kart.aktif i { color: #007bff; }
     </style>
 </head>
 <body>
@@ -53,10 +58,10 @@
     <div class="garaj-katmani"></div>
 
     <nav class="ust-menu-cubugu">
-        <div class="ust-menu-sol">
+        <a href="index.html" class="ust-menu-sol">
             <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
             <span class="ust-menu-baslik">MODIF-AI</span>
-        </div>
+        </a>
         <i class="fas fa-bars hamburger-buton" onclick="menuKontrol_dugum()"></i>
     </nav>
 
@@ -80,52 +85,42 @@
             <div class="sss-soru">Modif-AI tam olarak nedir? <i class="fas fa-chevron-down"></i></div>
             <div class="sss-cevap">Modif-AI, yapay zeka ve 3D modelleme teknolojilerini kullanarak otomobil modifikasyonunu dijital ortama taşıyan bir platformdur. Kullanıcılarımızın hayallerindeki araç tasarımlarını saniyeler içinde gerçeğe dönüştürmelerini sağlıyoruz.</div>
         </div>
-
         <div class="sss-kart" onclick="sssAc_dugum(this)">
             <div class="sss-soru">Kredi sistemi nasıl işliyor? <i class="fas fa-chevron-down"></i></div>
             <div class="sss-cevap">Platformumuz kredi bazlı çalışır. Standart 2D modelleme 30 kredi, profesyonel derinlik analizi sunan 3D modelleme seçeneği ise 50 kredi olarak ücretlendirilmiştir.</div>
         </div>
-
         <div class="sss-kart" onclick="sssAc_dugum(this)">
             <div class="sss-soru">Hangi araçları yükleyebilirim? <i class="fas fa-chevron-down"></i></div>
             <div class="sss-cevap">Marka ve model ayırt etmeksizin tüm binek araçları yükleyebilirsiniz. Fotoğrafın net olması ve yeterli ışık altında çekilmiş olması, yapay zekamızın en iyi sonucu vermesi için yeterlidir.</div>
         </div>
-
         <div class="sss-kart" onclick="sssAc_dugum(this)">
             <div class="sss-soru">Hangi parçaları değiştirebilirim? <i class="fas fa-chevron-down"></i></div>
             <div class="sss-cevap">Şu anki sürümde araç rengi, jant modelleri ve spoiler seçeneklerini değiştirebilirsiniz. Çok yakında geniş kapsamlı body kit ve iç mekan özelleştirmeleri de sisteme eklenecektir.</div>
         </div>
-
         <div class="sss-kart" onclick="sssAc_dugum(this)">
             <div class="sss-soru">İşlem süresi ne kadar? <i class="fas fa-chevron-down"></i></div>
             <div class="sss-cevap">FastAPI tabanlı sunucularımız sayesinde bir aracın modellenmesi ve parçaların entegrasyonu ortalama 60-90 saniye arasında tamamlanmaktadır.</div>
         </div>
-
         <div class="sss-kart" onclick="sssAc_dugum(this)">
             <div class="sss-soru">Mobil uygulaması olacak mı? <i class="fas fa-chevron-down"></i></div>
             <div class="sss-cevap">Evet, Modif-AI hem web hem mobil platformlarda yayında olacaktır. Lansman sürecinde Android uygulamamız yayında olacak, kısa süre içinde iOS desteği de gelecektir.</div>
         </div>
-
         <div class="sss-kart" onclick="sssAc_dugum(this)">
             <div class="sss-soru">AR özelliği ne işe yarar? <i class="fas fa-chevron-down"></i></div>
             <div class="sss-cevap">Artırılmış Gerçeklik (AR) sayesinde tasarladığınız aracı telefon kameranızla gerçek dünyada, kendi garajınızda veya sokağınızda 1:1 ölçekle canlı olarak inceleyebilirsiniz.</div>
         </div>
-
         <div class="sss-kart" onclick="sssAc_dugum(this)">
             <div class="sss-soru">Ödeme sistemi nasıl çalışıyor? <i class="fas fa-chevron-down"></i></div>
             <div class="sss-cevap">Sistemimizde her bir render işlemi için tek seferlik kredi ödemesi alınır. Render sonrası, o model üzerinde dilediğiniz kadar parça kombinasyonunu ek ücret ödemeden deneyebilirsiniz.</div>
         </div>
-
         <div class="sss-kart" onclick="sssAc_dugum(this)">
             <div class="sss-soru">Verilerim güvende mi? <i class="fas fa-chevron-down"></i></div>
             <div class="sss-cevap">Evet, tüm kullanıcı verileri PostgreSQL ve Firebase altyapılarıyla, yüksek güvenlikli şifreleme yöntemleri kullanılarak korunmaktadır.</div>
         </div>
-
         <div class="sss-kart" onclick="sssAc_dugum(this)">
             <div class="sss-soru">Çekiliş sonuçları ne zaman açıklanacak? <i class="fas fa-chevron-down"></i></div>
             <div class="sss-cevap">Büyük lansman çekilişimizin sonuçları 13 Mayıs saat 17:00'de web sitemiz üzerinden canlı olarak duyurulacaktır.</div>
         </div>
-
     </div>
 
     <script>
