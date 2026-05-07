@@ -4,8 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modif AI - Çekilişe Katıl</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+        body {
+            background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .garaj-katmani {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: -1;
+        }
+        header {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .baslik {
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            text-shadow: 0 0 15px #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* Form Kutusu Özel Tasarımı */
         .form-kutusu { 
             background: rgba(255, 255, 255, 0.05); 
             padding: 40px 30px; 
@@ -16,21 +58,25 @@
             margin: 50px auto; 
             text-align: center; 
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
         }
-        .form-kutusu h2 { margin-top: 0; margin-bottom: 25px; font-weight: 400; }
+        .form-kutusu h2 { margin-top: 0; margin-bottom: 25px; font-weight: 400; color: white; }
         .form-kutusu input { 
             width: 90%; 
             padding: 15px; 
             margin: 10px 0; 
             border-radius: 10px; 
             border: 1px solid rgba(255,255,255,0.2); 
-            background: rgba(0,0,0,0.5); 
-            color: white; 
+            background: rgba(0,0,0,0.6); /* Karanlık transparan kutular */
+            color: white; /* İçine yazılan yazı beyaz */
             font-size: 1rem; 
         }
+        .form-kutusu input::placeholder {
+            color: #ddd; /* Kutuların içindeki ipucu yazısı açık gri */
+        }
         .katil-btn { 
-            background: #007bff; 
+            background: linear-gradient(45deg, #007bff, #00d2ff); 
             color: white; 
             border: none; 
             padding: 15px; 
@@ -43,8 +89,22 @@
             transition: 0.3s; 
         }
         .katil-btn:hover { 
-            background: #0056b3; 
             transform: scale(1.05); 
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+        }
+        
+        /* Geri Dön Butonu */
+        .geri-btn {
+            color: #00d2ff;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .geri-btn:hover {
+            color: white;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -62,11 +122,12 @@
         <input type="email" id="kullanici_mail" placeholder="E-posta Adresiniz">
         <button class="katil-btn" id="kayit_buton">KATILIMI ONAYLA</button>
         <p id="mesaj_dugum" style="margin-top:15px; font-weight:bold;"></p>
+        
+        <a href="index.html" class="geri-btn"><i class="fas fa-arrow-left"></i> Ana Sayfaya Dön</a>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        // Sorgu yapabilmek için query, where ve getDocs fonksiyonlarını kütüphaneye ekledik
         import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
@@ -94,16 +155,13 @@
                 try {
                     const koleksiyon = collection(db, "katilimcilar");
                     
-                    // Veritabanında bu mail adresiyle eşleşen bir düğüm var mı diye sorguluyoruz
                     const sorguDugum = query(koleksiyon, where("eposta", "==", mail));
                     const sonucGecici = await getDocs(sorguDugum);
                     
                     if (!sonucGecici.empty) {
-                        // Eğer sonuç boş değilse, bu kişi zaten kayıtlı demektir
                         mesajDugum.innerText = "Kanki bu mail adresiyle zaten çekilişe katılmışsın!";
                         mesajDugum.style.color = "red";
                     } else {
-                        // Sonuç boşsa ilk defa katılıyordur, sisteme ekliyoruz
                         await addDoc(koleksiyon, {
                             isim: ad,
                             eposta: mail,
