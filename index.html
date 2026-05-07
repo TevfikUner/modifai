@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modif-AI - Ekibimiz</title>
+    <title>MODIF-AI - Ekibimiz</title>
     
     <link rel="icon" href="logo.jpg" type="image/jpeg">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        /* Smooth Scroll */
         html { scroll-behavior: smooth; }
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; }
         
@@ -46,11 +48,11 @@
         .hamburger-buton { font-size: 1.8rem; color: white; cursor: pointer; transition: 0.3s; }
         .hamburger-buton:hover { color: #00d2ff; transform: scale(1.1); }
 
-        /* SOLDAN AÇILAN YAN MENÜ */
+        /* YAN MENÜ */
         .yan-menu {
             position: fixed;
             top: 0;
-            left: -320px; /* Başlangıçta gizli */
+            left: -320px;
             width: 300px;
             height: 100%;
             background: rgba(10, 10, 15, 0.95);
@@ -78,9 +80,8 @@
         }
         .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); padding-left: 40px; color: #00d2ff; border-left: 5px solid #00d2ff; }
 
-        /* ANA İÇERİK */
+        /* ÜST AKSİYON */
         #ust_kisim { margin-top: 30px; text-align: center; z-index: 5; }
-
         .cekilis-yonlendirme-btn { 
             display: inline-block; 
             background: linear-gradient(45deg, #007bff, #00d2ff); 
@@ -100,18 +101,16 @@
 
         .geri-sayim-alani { background: rgba(255, 255, 255, 0.05); padding: 25px 40px; border-radius: 30px; border: 1px solid rgba(0, 123, 255, 0.4); backdrop-filter: blur(15px); display: inline-block; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
         .sayac-baslik { font-size: 0.9rem; color: #00d2ff; letter-spacing: 4px; margin-bottom: 20px; text-transform: uppercase; font-weight: bold; }
-        .sayac-merkez { display: flex; flex-direction: column; align-items: center; gap: 15px; }
         .ust-birim span { font-size: 4.5rem; font-weight: bold; color: white; text-shadow: 0 0 20px rgba(0, 123, 255, 1); line-height: 1; }
-        .ust-birim small { font-size: 1rem; color: #aaa; letter-spacing: 2px; }
         .alt-birimler { display: flex; gap: 30px; margin-top: 10px; }
         .alt-birim span { font-size: 2.2rem; font-weight: bold; color: #00d2ff; }
-        .alt-birim small { font-size: 0.8rem; color: #777; display: block; margin-top: 5px; }
 
+        /* VİZYON & MİSYON (GÜNCELLENDİ) */
         .vizyon-misyon-alani { display: flex; justify-content: center; gap: 30px; width: 95%; max-width: 1200px; margin: 50px auto 20px; z-index: 5; }
-        .v-m-kutu { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 35px 30px; flex: 1; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: all 0.4s ease; }
+        .v-m-kutu { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 35px 30px; flex: 1; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: 0.4s; text-align: left; }
         .v-m-kutu:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(0, 123, 255, 0.3); }
         .vizyon-kutu { border-left: 4px solid #00d2ff; }
-        .misyon-kutu { border-right: 4px solid #007bff; text-align: right; }
+        .misyon-kutu { border-left: 4px solid #007bff; } /* Misyon sola dayalı ve kenarlık solda */
         .v-m-kutu h2 { font-size: 1.5rem; letter-spacing: 2px; margin-top: 0; margin-bottom: 15px; }
         .vizyon-kutu h2 { color: #00d2ff; }
         .misyon-kutu h2 { color: #007bff; }
@@ -120,32 +119,30 @@
         header { margin-top: 50px; margin-bottom: 40px; text-align: center; }
         .baslik { font-size: 2.8rem; letter-spacing: 8px; text-shadow: 0 0 20px #007bff; border-bottom: 3px solid #007bff; padding-bottom: 15px; display: inline-block; font-weight: bold; }
 
+        /* EKİP KARTLARI */
         .konteynir { display: flex; justify-content: center; gap: 30px; width: 95%; max-width: 1200px; padding: 20px; margin-bottom: 50px; }
-        .kart { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px; padding: 40px 30px; flex: 1; text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); }
+        .kart { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px; padding: 40px 30px; flex: 1; text-align: center; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); }
         .kart:hover { transform: translateY(-20px) scale(1.05); border-color: #00d2ff; box-shadow: 0 0 45px rgba(0, 210, 255, 0.6); }
-        .profil-foto { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #007bff; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0,123,255,0.5); transition: 0.3s; }
-        .kart:hover .profil-foto { border-color: #00d2ff; box-shadow: 0 0 25px rgba(0,210,255,0.8); }
-        .kart h2 { font-size: 1.8rem; margin-bottom: 25px; font-weight: 500; }
-        .iletisim-baglantilari { display: flex; flex-direction: column; gap: 12px; }
-        .iletisim-baglantilari a { color: #fff; text-decoration: none; background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 12px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .profil-foto { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #007bff; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0,123,255,0.5); }
+        .kart h2 { font-size: 1.8rem; margin-bottom: 25px; }
+        .iletisim-baglantilari a { color: #fff; text-decoration: none; background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 12px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; }
         .iletisim-baglantilari a:hover { background: #007bff; transform: scale(1.05); }
 
+        /* FOOTER (GÜNCELLENDİ) */
         footer { margin-top: auto; padding: 30px 20px; background: rgba(0,0,0,0.8); border-top: 1px solid #007bff; width: 100%; text-align: center; box-sizing: border-box; z-index: 5; }
         .footer-metin { color: #888; font-size: 0.95rem; letter-spacing: 1px; }
-        .footer-metin span { color: #00d2ff; font-weight: bold; }
+        .footer-metin span { color: white; font-weight: bold; } /* Marka ismi artık beyaz */
 
         @media (max-width: 900px) { 
             .konteynir, .vizyon-misyon-alani { flex-direction: column; align-items: center; } 
             .kart { width: 100%; max-width: 350px; } 
-            .ust-birim span { font-size: 3.5rem; } 
-            .misyon-kutu { text-align: left; border-right: none; border-left: 4px solid #007bff; }
         }
     </style>
 </head>
 <body>
 
     <div class="bilgi-seridi">
-        <i class="fas fa-info-circle"></i> Modif-AI platformu geliştirme aşamasındadır. Ana sitemiz çok yakında yayında!
+        <i class="fas fa-info-circle"></i> MODIF-AI platformu geliştirme aşamasındadır. Ana sitemiz çok yakında yayında!
     </div>
 
     <nav class="ust-menu-cubugu">
@@ -158,11 +155,11 @@
 
     <div id="yan_menu_dugum" class="yan-menu">
         <i class="fas fa-times menu-kapat-buton" onclick="menuKontrol()"></i>
-        <a href="#ust_kisim" onclick="menuKontrol()"><i class="fas fa-home"></i> Ana Sayfa</a>
-        <a href="#" onclick="projeDetayiGoster(); menuKontrol();"><i class="fas fa-microchip"></i> Nasıl Çalışır?</a>
+        <a href="index.html" onclick="menuKontrol()"><i class="fas fa-home"></i> Ana Sayfa</a>
+        <a href="detaylar.html"><i class="fas fa-rocket"></i> Proje Detayları</a>
+        <a href="mimari.html"><i class="fas fa-server"></i> Sistem Mimarisi</a>
+        <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
         <a href="cekilis.html"><i class="fas fa-gift"></i> Büyük Çekiliş</a>
-        <a href="#ekip_alani" onclick="menuKontrol()"><i class="fas fa-users"></i> Geliştirici Ekip</a>
-        <a href="#iletisim_alani" onclick="menuKontrol()"><i class="fas fa-envelope"></i> İletişim & Haklar</a>
     </div>
 
     <div class="garaj-katmani"></div>
@@ -200,11 +197,11 @@
     <div class="vizyon-misyon-alani">
         <div class="v-m-kutu vizyon-kutu">
             <h2><i class="fas fa-eye"></i> VİZYONUMUZ</h2>
-            <p>Yapay zeka ve gelişmiş 3D modelleme teknolojilerini kullanarak otomobil modifikasyonunda global bir standart yaratmak. Geleneksel süreçleri dijitalleştirerek, kullanıcıların hayallerindeki aracı saniyeler içinde tasarlayabildiği yenilikçi bir gelecek inşa ediyoruz.</p>
+            <p>Yapay zeka ve gelişmiş 3D modelleme teknolojilerini kullanarak otomobil modifikasyonunda global bir standart yaratmak. Kullanıcıların hayallerindeki aracı saniyeler içinde tasarlayabildiği yenilikçi bir gelecek inşa ediyoruz.</p>
         </div>
         <div class="v-m-kutu misyon-kutu">
             <h2><i class="fas fa-bullseye"></i> MİSYONUMUZ</h2>
-            <p>Kullanıcı dostu, yüksek performanslı ve interaktif araç özelleştirme çözümleri sunarak modifiye tutkunlarına benzersiz bir dijital deneyim yaşatmak. Geliştirdiğimiz güçlü altyapı ile sektöre yön veren, öncü bir teknoloji ekibi olmak.</p>
+            <p>Kullanıcı dostu, yüksek performanslı ve interaktif araç özelleştirme çözümleri sunarak modifiye tutkunlarına benzersiz bir dijital deneyim yaşatmak. Sektöre yön veren, öncü bir teknoloji ekibi olmak.</p>
         </div>
     </div>
 
@@ -242,29 +239,18 @@
         </div>
     </div>
 
-    <footer id="iletisim_alani">
+    <footer>
         <p class="footer-metin">
-            &copy; 2026 <span>MODIF-AI</span>. Tüm Hakları Saklıdır. | Designed & Developed by Modif-AI Team
+            &copy; 2026 <span>MODIF-AI</span>. Tüm Hakları Saklıdır. | Designed & Developed by MODIF-AI TEAM
         </p>
     </footer>
 
     <script>
-        // YAN MENÜ KONTROL SİSTEMİ
         function menuKontrol() {
             let dugum = document.getElementById("yan_menu_dugum");
-            if(dugum.style.left === "0px") {
-                dugum.style.left = "-320px";
-            } else {
-                dugum.style.left = "0px";
-            }
+            dugum.style.left = (dugum.style.left === "0px") ? "-320px" : "0px";
         }
 
-        // PROJE DETAYI MESAJI
-        function projeDetayiGoster() {
-            alert("⚙️ MODIF-AI NASIL ÇALIŞIR?\n\n1. Aracınızın fotoğrafını sisteme yüklersiniz.\n2. Yapay Zeka (AI) motorumuz aracı analiz edip 3D modele dönüştürür.\n3. Sanal garajımızda binlerce modifiye parçasını aracınıza anında uygulayıp test edersiniz.\n\nSınırları zorlamak için çok yakında yayındayız!");
-        }
-
-        // GERİ SAYIM SAYACI
         const hedefTarih = new Date("May 13, 2026 17:00:00 +0300").getTime(); 
         const sayacGecici = setInterval(function() {
             const simdi = new Date().getTime();
