@@ -8,72 +8,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; letter-spacing: 0.5px; }
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; letter-spacing: 0.5px; transition: 0.3s; }
         body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
-        .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
+        .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; transition: 0.3s; }
 
-        /* YENİ NESİL PROFESYONEL NAVBAR */
-        .ust-menu-cubugu { 
-            width: 100%; 
-            background: rgba(0, 0, 0, 0.7); 
-            backdrop-filter: blur(15px); 
-            border-bottom: 1px solid rgba(0, 123, 255, 0.3); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 10px 20px; 
-            box-sizing: border-box; 
-            position: sticky; 
-            top: 0; 
-            z-index: 900; 
-        }
+        /* ESKİ DÜZEN NAVBAR (Logo Solda, Hamburger Sağda) */
+        .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; transition: 0.3s; }
+        .ust-menu-sol { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
+        .ust-menu-sol:hover { transform: scale(1.02); }
+        .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
+        .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .hamburger-buton { font-size: 1.8rem; color: white; cursor: pointer; transition: 0.3s; }
+        .hamburger-buton:hover { color: #00d2ff; transform: scale(1.1); }
 
-        /* SOL TARAF: MENÜ BUTONU VE YAZISI */
-        .menu-tetikleyici {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            color: #00d2ff;
-            transition: 0.3s;
-            min-width: 50px;
-        }
-        .menu-tetikleyici:hover { color: #fff; transform: scale(1.05); }
-        .hamburger-simge { font-size: 1.5rem; margin-bottom: 3px; }
-        .menu-metin { font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+        /* YAN MENÜ */
+        .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; box-shadow: 10px 0 30px rgba(0,0,0,0.8); z-index: 1000; transition: left 0.4s ease, background 0.3s; display: flex; flex-direction: column; padding-top: 80px; }
+        .menu-kapat-buton { position: absolute; top: 25px; right: 25px; font-size: 2rem; color: white; cursor: pointer; }
+        .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; align-items: center; gap: 15px; }
+        .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); padding-left: 40px; color: #00d2ff; border-left: 5px solid #00d2ff; }
 
-        /* SAĞ TARAF: LOGO VE MARKA */
-        .ust-menu-sag { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .ust-menu-logo { width: 35px; height: 35px; border-radius: 50%; border: 2px solid #007bff; }
-        .ust-menu-baslik { font-size: 1.2rem; font-weight: 800; letter-spacing: 2px; color: white; }
-
-        /* YAN MENÜ (SOLA ALINDI) */
-        .yan-menu { position: fixed; top: 0; left: -320px; width: 280px; height: 100%; background: rgba(10, 10, 15, 0.98); backdrop-filter: blur(25px); border-right: 2px solid #007bff; z-index: 1000; transition: 0.4s ease; display: flex; flex-direction: column; padding-top: 60px; }
-        .menu-kapat-buton { position: absolute; top: 20px; right: 20px; font-size: 1.8rem; color: white; cursor: pointer; }
-        .yan-menu a { color: white; text-decoration: none; font-size: 1.1rem; padding: 15px 25px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 12px; transition: 0.3s; }
-        .yan-menu a:hover { background: rgba(0, 123, 255, 0.15); color: #00d2ff; padding-left: 35px; }
-
-        /* ANA SAYFA İÇERİK ALANI */
-        .ana-icerik {
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: calc(100vh - 80px); text-align: center; padding: 20px;
-        }
-        .baslik-ana {
-            font-size: 3.5rem; font-weight: 900; color: #fff; letter-spacing: 4px;
-            text-shadow: 0 5px 20px rgba(0, 123, 255, 0.8); margin-bottom: 15px; margin-top: 0;
-        }
-        .aciklama-ana {
-            font-size: 1.15rem; color: #f0f0f0; max-width: 600px; line-height: 1.6;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8); margin-bottom: 40px; font-weight: 500;
-        }
+        /* ANA İÇERİK ALANI */
+        .ana-icerik { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 80px); text-align: center; padding: 20px; }
+        .baslik-ana { font-size: 3.5rem; font-weight: 900; color: #fff; letter-spacing: 4px; text-shadow: 0 5px 20px rgba(0, 123, 255, 0.8); margin-bottom: 15px; margin-top: 0; }
+        .aciklama-ana { font-size: 1.15rem; color: #f0f0f0; max-width: 600px; line-height: 1.6; text-shadow: 0 2px 5px rgba(0,0,0,0.8); margin-bottom: 40px; font-weight: 500; }
 
         /* LANSMAN SAYACI */
-        .sayac-kutusu {
-            background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(0, 123, 255, 0.5); border-radius: 20px;
-            padding: 30px 50px; backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            margin-bottom: 40px; text-align: center;
-        }
-        .sayac-kutusu h3 { color: #00d2ff; margin-top: 0; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .sayac-kutusu { background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(0, 123, 255, 0.5); border-radius: 20px; padding: 30px 50px; backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin-bottom: 40px; text-align: center; }
+        .sayac-kutusu h3 { color: #00d2ff; margin-top: 0; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); font-weight: 800; }
         .sayac { font-size: 2.2rem; font-weight: bold; color: #fff; letter-spacing: 3px; font-family: monospace; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
         
         /* BUTONLAR */
@@ -92,12 +53,11 @@
         }
 
         /* AÇIK TEMA UYUMU */
-        body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.95); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-simge, body.acik-tema .menu-metin, body.acik-tema .menu-kapat-buton { color: #007bff; text-shadow: none; }
-        body.acik-tema .yan-menu { background: rgba(255, 255, 255, 0.98); border-right: 2px solid #007bff; }
-        body.acik-tema .yan-menu a { color: #222; border-bottom: 1px solid #ddd; font-weight: 600; }
-        body.acik-tema .yan-menu a:hover { background: #e6f2ff; color: #007bff; }
         body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.95); }
+        body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.95); border-bottom: 2px solid #ccc; }
+        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-kapat-buton { color: #007bff; text-shadow: none; }
+        body.acik-tema .yan-menu { background: rgba(255, 255, 255, 0.98); }
+        body.acik-tema .yan-menu a { color: #222; border-bottom: 1px solid #ddd; }
         body.acik-tema .baslik-ana, body.acik-tema .sayac { color: #111; text-shadow: none; }
         body.acik-tema .aciklama-ana { color: #333; text-shadow: none; font-weight: 600; }
         body.acik-tema .sayac-kutusu { background: rgba(255, 255, 255, 0.9); border-color: #007bff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
@@ -106,27 +66,27 @@
 </head>
 <body>
 
-    <script>if(localStorage.getItem("tema_gecici") === "acik") { document.body.classList.add("acik-tema"); }</script>
+    <script>
+        if(localStorage.getItem("tema_gecici") === "acik") { document.body.classList.add("acik-tema"); }
+    </script>
+
     <div class="garaj-katmani"></div>
 
     <nav class="ust-menu-cubugu">
-        <div class="menu-tetikleyici" onclick="menuKontrol_dugum()">
-            <i class="fas fa-bars hamburger-simge"></i>
-            <span class="menu-metin">MENÜ</span>
-        </div>
-        
-        <a href="index.html" class="ust-menu-sag">
+        <a href="index.html" class="ust-menu-sol">
             <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
             <span class="ust-menu-baslik">MODIF-AI</span>
         </a>
+        <i class="fas fa-bars hamburger-buton" onclick="menuKontrol_dugum()"></i>
     </nav>
 
     <div id="yan_menu_dugum" class="yan-menu">
         <i class="fas fa-times menu-kapat-buton" onclick="menuKontrol_dugum()"></i>
         <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
-        <a href="detaylar.html"><i class="fas fa-info-circle"></i> Proje Detayları</a>
-        <a href="tasarimlar.html"><i class="fas fa-car"></i> Örnek Tasarımlar</a>
-        <a href="mimari.html"><i class="fas fa-layer-group"></i> Sistem Mimarisi</a>
+        <a href="detaylar.html"><i class="fas fa-rocket"></i> Proje Detayları</a>
+        <a href="tasarimlar.html"><i class="fas fa-images"></i> Örnek Tasarımlar</a>
+        <a href="mimari.html"><i class="fas fa-server"></i> Sistem Mimarisi</a>
+        <a href="index.html#ekip_alani"><i class="fas fa-users"></i> Geliştirici Ekip</a>
         <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
         <a href="cekilis.html"><i class="fas fa-gift"></i> Büyük Çekiliş</a>
         <a href="sss.html"><i class="fas fa-question-circle"></i> S.S.S.</a>
@@ -149,13 +109,11 @@
     </main>
 
     <script>
-        // MENÜ AÇ/KAPAT
         function menuKontrol_dugum() {
             let dugum = document.getElementById("yan_menu_dugum");
             dugum.style.left = (dugum.style.left === "0px") ? "-320px" : "0px";
         }
 
-        // LANSMAN SAYACI (13 Mayıs 17:00)
         function sayacGuncelle() {
             const hedef = new Date("May 13, 2026 17:00:00").getTime();
             const simdi = new Date().getTime();
