@@ -27,8 +27,12 @@
         .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
         .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.8); transition: 0.3s; }
         
-        .hamburger-buton { font-size: 1.8rem; color: white; cursor: pointer; transition: 0.3s; }
-        .hamburger-buton:hover { color: #00d2ff; transform: scale(1.1); }
+        .hamburger-buton { font-size: 1.8rem; color: white; transition: 0.3s; }
+        
+        /* YENİ EKLENEN MENÜ TETİKLEYİCİ STİLLERİ */
+        .menu-tetikleyici { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        .menu-tetikleyici:hover .hamburger-buton { color: #00d2ff; transform: scale(1.1); }
+        .menu-yazisi { font-size: 0.75rem; font-weight: 800; color: #00d2ff; letter-spacing: 1.5px; margin-top: 4px; }
 
         .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; box-shadow: 10px 0 30px rgba(0,0,0,0.8); z-index: 1000; transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s; display: flex; flex-direction: column; padding-top: 80px; }
         .menu-kapat-buton { position: absolute; top: 25px; right: 25px; font-size: 2rem; color: white; cursor: pointer; transition: 0.3s; }
@@ -78,7 +82,7 @@
         body.acik-tema { color: #111; font-weight: 600; }
         body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.95); }
         body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.95); border-bottom: 2px solid #ccc; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-kapat-buton { color: #007bff; text-shadow: none; }
+        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-kapat-buton, body.acik-tema .menu-yazisi { color: #007bff; text-shadow: none; }
         body.acik-tema .yan-menu { background: rgba(255, 255, 255, 0.98); border-right: 2px solid #007bff; box-shadow: 10px 0 30px rgba(0,0,0,0.1); }
         body.acik-tema .yan-menu a { color: #222; border-bottom: 1px solid #ddd; font-weight: 600; }
         body.acik-tema .yan-menu a:hover { background: #e6f2ff; color: #007bff; }
@@ -112,11 +116,15 @@
     </div>
 
     <nav class="ust-menu-cubugu">
+        <div class="menu-tetikleyici" onclick="menuKontrol_dugum()">
+            <i class="fas fa-bars hamburger-buton"></i>
+            <span class="menu-yazisi">MENÜ</span>
+        </div>
+        
         <a href="index.html" class="ust-menu-sol">
             <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
             <span class="ust-menu-baslik">MODIF-AI</span>
         </a>
-        <i class="fas fa-bars hamburger-buton" onclick="menuKontrol_dugum()"></i>
     </nav>
 
     <div id="yan_menu_dugum" class="yan-menu">
