@@ -12,10 +12,8 @@
     <style>
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; }
         
-        /* Bilgi Şeridi */
         .bilgi-seridi { width: 100%; background-color: #007bff; color: white; text-align: center; padding: 12px 0; font-size: 1rem; font-weight: 500; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); position: relative; z-index: 10; }
         
-        /* Arka Plan Ayarları */
         body { 
             background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); 
             background-size: cover; 
@@ -27,12 +25,7 @@
         }
         .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: -1; }
 
-        /* Üst Bölüm: Buton ve Geri Sayım */
-        .ust-aksiyon-alani {
-            margin-top: 30px;
-            text-align: center;
-            z-index: 5;
-        }
+        .ust-aksiyon-alani { margin-top: 30px; text-align: center; z-index: 5; }
 
         .cekilis-yonlendirme-btn { 
             display: inline-block; 
@@ -51,7 +44,6 @@
         }
         .cekilis-yonlendirme-btn:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(0, 123, 255, 0.8); border-color: white; }
 
-        /* Geri Sayım Tasarımı */
         .geri-sayim-alani { 
             background: rgba(255, 255, 255, 0.05); 
             padding: 25px 40px; 
@@ -70,7 +62,6 @@
         .alt-birim span { font-size: 2.2rem; font-weight: bold; color: #00d2ff; }
         .alt-birim small { font-size: 0.8rem; color: #777; display: block; margin-top: 5px; }
 
-        /* Başlık Bölümü (Resimlerin Üstünde) */
         header { margin-top: 60px; margin-bottom: 40px; text-align: center; }
         .baslik { 
             font-size: 2.8rem; 
@@ -82,43 +73,17 @@
             font-weight: bold;
         }
 
-        /* Ekip Kartları */
         .konteynir { display: flex; justify-content: center; gap: 30px; width: 95%; max-width: 1200px; padding: 20px; margin-bottom: 50px; }
-        .kart { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 25px; 
-            padding: 40px 30px; 
-            flex: 1; 
-            text-align: center; 
-            transition: all 0.4s ease; 
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); 
-        }
+        .kart { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px; padding: 40px 30px; flex: 1; text-align: center; transition: all 0.4s ease; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); }
         .kart:hover { transform: translateY(-15px); border-color: #007bff; box-shadow: 0 0 30px rgba(0, 123, 255, 0.4); }
         .profil-foto { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #007bff; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0,123,255,0.5); }
         .kart h2 { font-size: 1.8rem; margin-bottom: 25px; font-weight: 500; }
         
         .iletisim-baglantilari { display: flex; flex-direction: column; gap: 12px; }
-        .iletisim-baglantilari a { 
-            color: #fff; 
-            text-decoration: none; 
-            background: rgba(255, 255, 255, 0.08); 
-            padding: 12px; 
-            border-radius: 12px; 
-            transition: 0.3s; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 10px; 
-        }
+        .iletisim-baglantilari a { color: #fff; text-decoration: none; background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 12px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .iletisim-baglantilari a:hover { background: #007bff; transform: scale(1.05); }
 
-        @media (max-width: 900px) { 
-            .konteynir { flex-direction: column; align-items: center; } 
-            .kart { width: 100%; max-width: 350px; } 
-            .ust-birim span { font-size: 3.5rem; }
-        }
+        @media (max-width: 900px) { .konteynir { flex-direction: column; align-items: center; } .kart { width: 100%; max-width: 350px; } .ust-birim span { font-size: 3.5rem; } }
     </style>
 </head>
 <body>
@@ -139,3 +104,87 @@
             <div class="sayac-merkez">
                 <div class="ust-birim">
                     <span id="gun_dugum">0</span>
+                    <small>GÜN</small>
+                </div>
+                <div class="alt-birimler">
+                    <div class="alt-birim">
+                        <span id="saat_dugum">00</span>
+                        <small>SAAT</small>
+                    </div>
+                    <div class="alt-birim">
+                        <span id="dakika_dugum">00</span>
+                        <small>DAKİKA</small>
+                    </div>
+                    <div class="alt-birim">
+                        <span id="saniye_dugum">00</span>
+                        <small>SANİYE</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <h1 class="baslik">MODIF-AI EKİBİ</h1>
+    </header>
+
+    <div class="konteynir">
+        <div class="kart">
+            <img src="tevfik.jpeg" alt="Tevfik Üner" class="profil-foto">
+            <h2>Tevfik Üner</h2>
+            <div class="iletisim-baglantilari">
+                <a href="mailto:tevfikuner0@gmail.com"><i class="fas fa-envelope"></i> Mail</a>
+                <a href="https://www.linkedin.com/in/tevfikuner" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/TevfikUner" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </div>
+
+        <div class="kart">
+            <img src="emirhan.jpeg" alt="Emirhan Kar" class="profil-foto">
+            <h2>Emirhan Kar</h2>
+            <div class="iletisim-baglantilari">
+                <a href="mailto:emirhankar5434@gmail.com"><i class="fas fa-envelope"></i> Mail</a>
+                <a href="https://www.linkedin.com/in/emirhan-kar-9b9662208/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/EmirhanKar" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </div>
+
+        <div class="kart">
+            <img src="furkan.jpeg" alt="Furkan Genç" class="profil-foto">
+            <h2>Furkan Genç</h2>
+            <div class="iletisim-baglantilari">
+                <a href="mailto:furkann.gencc7@gmail.com"><i class="fas fa-envelope"></i> Mail</a>
+                <a href="https://www.linkedin.com/in/furkan-gen%C3%A7-9b0784228/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/FurkanGencc" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Hedef: 13 Mayıs 2026 17:00 Türkiye Saati (+03:00)
+        const hedefTarih = new Date("May 13, 2026 17:00:00 +0300").getTime(); 
+
+        const sayacGecici = setInterval(function() {
+            const simdi = new Date().getTime();
+            const kalanZaman = hedefTarih - simdi;
+
+            if (kalanZaman < 0) {
+                clearInterval(sayacGecici);
+                document.getElementById("sayac_alani_dugum").innerHTML = "<h2 style='color:#00ff00; margin:0; text-shadow: 0 0 15px #00ff00;'>ÇEKİLİŞ BAŞLADI!</h2>";
+                return;
+            }
+
+            const gun = Math.floor(kalanZaman / (1000 * 60 * 60 * 24));
+            const saat = Math.floor((kalanZaman % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const dakika = Math.floor((kalanZaman % (1000 * 60 * 60)) / (1000 * 60));
+            const saniye = Math.floor((kalanZaman % (1000 * 60)) / 1000);
+
+            document.getElementById("gun_dugum").innerText = gun;
+            document.getElementById("saat_dugum").innerText = saat < 10 ? "0" + saat : saat;
+            document.getElementById("dakika_dugum").innerText = dakika < 10 ? "0" + dakika : dakika;
+            document.getElementById("saniye_dugum").innerText = saniye < 10 ? "0" + saniye : saniye;
+
+        }, 1000); 
+    </script>
+</body>
+</html>
