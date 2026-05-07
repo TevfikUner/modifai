@@ -14,50 +14,68 @@
         body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
         .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
 
-        .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; }
-        .ust-menu-sol { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        /* NAVBAR & SIDEBAR (TAM UYUMLU) */
+        .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; transition: 0.3s; }
+        .ust-menu-sol { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
+        .ust-menu-sol:hover { transform: scale(1.02); }
         .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
-        .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; }
+        .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .hamburger-buton { font-size: 1.8rem; color: white; cursor: pointer; transition: 0.3s; }
         
-        .sayfa-baslik { text-align: center; font-size: 2.8rem; font-weight: 800; letter-spacing: 5px; margin: 40px 0 10px; text-shadow: 0 2px 15px rgba(0, 123, 255, 0.8); }
-        .sayfa-aciklama { text-align: center; color: #f0f0f0; margin-bottom: 30px; }
+        .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; z-index: 1000; transition: left 0.4s ease; display: flex; flex-direction: column; padding-top: 80px; }
+        .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; gap: 15px; transition: 0.3s; }
+        .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); color: #00d2ff; border-left: 5px solid #00d2ff; }
 
-        /* DEV TASARIM ALANI */
-        .tasarim-konteynir { display: flex; justify-content: center; width: 95%; max-width: 1200px; margin: 0 auto 50px; }
-        .tasarim-kart { background: rgba(0, 0, 0, 0.7); border: 2px solid #007bff; border-radius: 30px; padding: 40px; width: 100%; backdrop-filter: blur(25px); box-shadow: 0 25px 60px rgba(0,0,0,1); text-align: center; }
+        /* FONT AYARLARI VE BAŞLIKLAR */
+        .sayfa-baslik { text-align: center; font-size: 2.8rem; font-weight: 800; letter-spacing: 5px; text-shadow: 0 2px 15px rgba(0, 123, 255, 0.8); margin: 50px 0 10px; color: #fff; }
+        .sayfa-aciklama { text-align: center; color: #f0f0f0; font-size: 1.1rem; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8); margin-bottom: 40px; }
+
+        /* TASARIM KARTI VE MEDYA ALANI (BOYUTLAR TAM ORTASINDA AYARLANDI) */
+        .tasarim-konteynir { display: flex; justify-content: center; width: 95%; max-width: 1000px; margin: 0 auto 50px; }
+        .tasarim-kart { background: rgba(0, 0, 0, 0.7); border: 2px solid #007bff; border-radius: 30px; padding: 35px; width: 100%; backdrop-filter: blur(25px); box-shadow: 0 25px 60px rgba(0,0,0,1); text-align: center; transition: 0.3s; }
+        .tasarim-kart:hover { border-color: #00d2ff; box-shadow: 0 10px 40px rgba(0, 210, 255, 0.3); }
         
-        .tasarim-kart h3 { color: #00d2ff; font-size: 2.2rem; font-weight: 800; margin-bottom: 30px; letter-spacing: 2px; }
+        .tasarim-kart h3 { color: #00d2ff; font-size: 2rem; font-weight: 800; margin-bottom: 25px; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
         
-        /* MEDYA ALANI (BÜYÜTÜLDÜ VE SABİTLENDİ) */
+        /* MEDYA ALANI: YÜKSEKLİK 450PX OLARAK ORTALANDI */
         .medya-alani { 
             width: 100%; 
-            height: 600px; /* Görsel alanı devasa yapıldı */
-            border-radius: 25px; 
+            height: 450px; /* Dev gibi değil, küçük de değil; tam ortası */
+            border-radius: 20px; 
             overflow: hidden; 
-            margin-bottom: 35px; 
+            margin-bottom: 30px; 
             position: relative; 
             background: #050505;
             border: 1px solid rgba(255,255,255,0.15); 
         }
         
-        .foto-2d { width: 100%; height: 100%; object-fit: contain; display: block; }
-        
-        /* 3D Model Başlangıçta Görünmez */
-        model-viewer { 
-            width: 100%; 
-            height: 100%; 
-            display: none; 
-            --poster-color: transparent; 
-        }
+        /* 2D Fotoğraf ve 3D Model Stilleri */
+        #resim_a { width: 100%; height: 100%; object-fit: contain; display: block; }
+        #model_a { width: 100%; height: 100%; display: none; background-color: transparent; }
 
-        .ai-buton { background: linear-gradient(45deg, #007bff, #00d2ff); color: white; border: none; padding: 20px 50px; border-radius: 100px; font-size: 1.3rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 15px; box-shadow: 0 10px 30px rgba(0, 123, 255, 0.5); }
+        /* SİHİRLİ BUTON */
+        .ai-buton { background: linear-gradient(45deg, #007bff, #00d2ff); color: white; border: none; padding: 18px 45px; border-radius: 100px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 10px 30px rgba(0, 123, 255, 0.4); }
         .ai-buton:hover { transform: translateY(-5px); box-shadow: 0 0 40px rgba(0, 123, 255, 0.8); }
 
-        /* YÜKLENİYOR SİMGESİ */
-        .yukleniyor { color: #00d2ff; font-weight: bold; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; }
+        /* AÇIK TEMA (KUSURSUZ UYUM) */
+        body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.95); }
+        body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.95); border-bottom: 2px solid #ccc; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-kapat-buton { color: #007bff; text-shadow: none; }
+        body.acik-tema .yan-menu { background: rgba(255, 255, 255, 0.98); border-right: 2px solid #007bff; }
+        body.acik-tema .yan-menu a { color: #222; border-bottom: 1px solid #ddd; font-weight: 600; }
+        body.acik-tema .yan-menu a:hover { background: #e6f2ff; color: #007bff; }
+        body.acik-tema .sayfa-baslik { color: #111; text-shadow: none; }
+        body.acik-tema .sayfa-aciklama { color: #333; text-shadow: none; font-weight: 600; }
+        body.acik-tema .tasarim-kart { background: rgba(255, 255, 255, 0.9); border: 1px solid #ccc; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        body.acik-tema .tasarim-kart h3 { color: #111; text-shadow: none; }
+        body.acik-tema .medya-alani { background: #f8f9fa; border: 1px solid #ddd; }
     </style>
 </head>
 <body>
+
+    <script>
+        if(localStorage.getItem("tema_gecici") === "acik") { document.body.classList.add("acik-tema"); }
+    </script>
 
     <div class="garaj-katmani"></div>
 
@@ -66,55 +84,71 @@
             <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
             <span class="ust-menu-baslik">MODIF-AI</span>
         </a>
+        <i class="fas fa-bars hamburger-buton" onclick="menuKontrol_dugum()"></i>
     </nav>
 
+    <div id="yan_menu_dugum" class="yan-menu">
+        <i class="fas fa-times menu-kapat-buton" onclick="menuKontrol_dugum()"></i>
+        <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
+        <a href="detaylar.html"><i class="fas fa-rocket"></i> Proje Detayları</a>
+        <a href="tasarimlar.html"><i class="fas fa-images"></i> Örnek Tasarımlar</a>
+        <a href="mimari.html"><i class="fas fa-server"></i> Sistem Mimarisi</a>
+        <a href="index.html#ekip_alani"><i class="fas fa-users"></i> Geliştirici Ekip</a>
+        <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
+        <a href="cekilis.html"><i class="fas fa-gift"></i> Büyük Çekiliş</a>
+        <a href="sss.html"><i class="fas fa-question-circle"></i> S.S.S.</a>
+        <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
+    </div>
+
     <h1 class="sayfa-baslik">SANAL GARAJ</h1>
-    <p class="sayfa-aciklama">Porsche 911 Carrera 4S: Fotoğraftan 3D Modellemeye</p>
+    <p class="sayfa-aciklama">Porsche 911 Carrera 4S: Yapay Zeka ile Dönüşümü Keşfedin</p>
 
     <div class="tasarim-konteynir">
         <div class="tasarim-kart">
             <h3>Porsche 911 Carrera 4S</h3>
             
             <div class="medya-alani">
-                <img src="araba_ilk.jpg" alt="Porsche 2D" class="foto-2d" id="resim_a">
+                <img src="araba_ilk.jpg" alt="Porsche 2D" id="resim_a">
                 
                 <model-viewer id="model_a" 
                               src="araba.glb" 
                               auto-rotate 
                               camera-controls 
-                              touch-action="pan-y"
                               shadow-intensity="1" 
                               exposure="1"
                               loading="eager">
                 </model-viewer>
-                
-                <div id="loader_a" class="yukleniyor"><i class="fas fa-spinner fa-spin"></i> Model Yükleniyor...</div>
             </div>
 
-            <button class="ai-buton" id="btn_a" onclick="modeGecis_dugum('a')">
+            <button class="ai-buton" id="btn_a" onclick="modeGecis_dugum()">
                 <i class="fas fa-magic"></i> AI ile 360° Görünüm
             </button>
         </div>
     </div>
 
     <script>
-        function modeGecis_dugum(a) {
-            let resim = document.getElementById("resim_" + a);
+        function menuKontrol_dugum() {
+            let dugum = document.getElementById("yan_menu_dugum");
+            dugum.style.left = (dugum.style.left === "0px") ? "-320px" : "0px";
+        }
+
+        function modeGecis_dugum() {
+            let resim = document.getElementById("resim_a");
             let model = document.getElementById("model_a");
             let btn = document.getElementById("btn_a");
             
-            if(resim.style.display !== "none") {
-                // 3D'ye Geçiş
+            if (resim.style.display !== "none") {
+                // 3D'ye GEÇ
                 resim.style.display = "none";
                 model.style.display = "block";
                 btn.innerHTML = '<i class="fas fa-undo"></i> 2D Fotoğrafa Dön';
-                btn.style.background = "linear-gradient(45deg, #ff416c, #ff4b2b)";
+                btn.style.background = "linear-gradient(45deg, #ff416c, #ff4b2b)"; // Kırmızımsı buton
             } else {
-                // 2D'ye Dönüş
+                // 2D'ye DÖN
                 resim.style.display = "block";
                 model.style.display = "none";
                 btn.innerHTML = '<i class="fas fa-magic"></i> AI ile 360° Görünüm';
-                btn.style.background = "linear-gradient(45deg, #007bff, #00d2ff)";
+                btn.style.background = "linear-gradient(45deg, #007bff, #00d2ff)"; // Eski mavi renk
             }
         }
     </script>
