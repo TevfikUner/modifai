@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modif AI - Çekiliş Paneli</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow: hidden; }
+        body {
+            background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
+        
+        .panel { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 2px solid #007bff; border-radius: 30px; padding: 50px; text-align: center; width: 80%; max-width: 800px; box-shadow: 0 0 50px rgba(0, 123, 255, 0.3); }
+        
+        #isim_ekrani { font-size: 4rem; font-weight: bold; height: 120px; color: #00d2ff; text-shadow: 0 0 20px #007bff; margin: 30px 0; overflow: hidden; }
+        
+        .ana-btn { background: linear-gradient(45deg, #007bff, #00d2ff); color: white; border: none; padding: 20px 50px; border-radius: 50px; font-size: 1.5rem; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 30px rgba(0, 123, 255, 0.5); }
+        .ana-btn:hover { transform: scale(1.1); box-shadow: 0 15px 40px rgba(0, 123, 255, 0.8); }
+        .ana-btn:disabled { background: #444; cursor: not-allowed; box-shadow: none; }
+
+        #katilimci_sayisi { font-size: 1.2rem; color: #888; margin-bottom: 10px; }
+        .kazanan-etiket { font-size: 1.5rem; color: #ffcc00; display: none; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="garaj-katmani"></div>
+
+    <div class="panel">
+        <h1 style="letter-spacing: 5px;">MODIF AI ÇEKİLİŞ PANELİ</h1>
+        <div id="katilimci_sayisi">Bağlanıyor...</div>
+        
+        <div class="kazanan-etiket" id="kazanan_baslik">Tebrikler! Kazanan:</div>
+        <div id="isim_ekrani">---</div>
+        
+        <button class="ana-btn" id="baslat_btn" disabled>ÇEKİLİŞİ BAŞLAT</button>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAK-Qt0nT_zF6neKPCRyE-4vgFFW91ZadY",
+            authDomain: "modifai-cekilis.firebaseapp.com",
+            projectId: "modifai-cekilis",
+            storageBucket: "modifai-cekilis.firebasestorage.app",
+            messagingSenderId: "569243536908",
+            appId: "1:569243536908:web:b263e448504ce865b3a829",
+            measurementId: "G-FPEN5Q8MZS"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        let katilimci_listesi = [];
+        const isim_dugum = document.getElementById("isim_ekrani"); // dugum identifier
+
+        // 1. ADIM: VERİLERİ ÇEK
+        async function verileriGetir() {
+            try {
+                const snapshot = await getDocs(collection(db, "katilimcilar"));
+                katilimci_listesi = snapshot.docs.map(doc => doc.data().isim);
+                
+                document.getElementById("katilimci_sayisi").innerText = `Toplam Katılımcı: ${katilimci_listesi.length}`;
+                if(katilimci_listesi.length > 0) {
+                    document.getElementById("baslat_btn").disabled = false;
+                }
+            } catch (e) {
+                console.error("Veri çekme hatası:", e);
+                document.getElementById("katilimci_sayisi").innerText = "Hata oluştu!";
+            }
+        }
+
+        // 2. ADIM: ÇEKİLİŞ ALGORİTMASI
+        document.getElementById("baslat_btn").addEventListener("click", function() {
+            this.disabled = true;
+            document.getElementById("kazanan_baslik").style.display = "none";
+            
+            let a = 0; // Listenin başlangıç indeksi
+            let b = katilimci_listesi.length - 1; // Listenin bitiş indeksi
+            let sayac = 0;
+            
+            // Animasyon (İsimlerin hızlıca akması)
+            let animasyon = setInterval(() => {
+                let rastgele_indeks = Math.floor(Math.random() * (b - a + 1)) + a;
+                isim_dugum.innerText = katilimci_listesi[rastgele_indeks];
+                sayac++;
+                
+                // 3 saniye sonra dur
+                if (sayac > 40) {
+                    clearInterval(animasyon);
+                    
+                    // GERÇEK KAZANANI BELİRLE (Final Seçim)
+                    let gecici_indeks = Math.floor(Math.random() * (b - a + 1)) + a; // gecici identifier
+                    let kazanan = katilimci_listesi[gecici_indeks];
+                    
+                    isim_dugum.innerText = kazanan;
+                    isim_dugum.style.color = "#ffcc00"; // Altın rengi
+                    document.getElementById("kazanan_baslik").style.display = "block";
+                    this.disabled = false;
+                    this.innerText = "YENİDEN ÇEK";
+                }
+            }, 70);
+        });
+
+        verileriGetir();
+    </script>
+</body>
+</html>
