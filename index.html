@@ -3,63 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modif AI - Ekibimiz</title>
+    <title>Modif-AI - Ekibimiz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; }
-        .bilgi-seridi { width: 100%; background-color: #007bff; color: white; text-align: center; padding: 12px 0; font-size: 1rem; font-weight: 500; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); position: relative; z-index: 10; }
-        .bilgi-seridi i { margin-right: 8px; }
-        body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; flex-direction: column; align-items: center; }
-        .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: -1; }
-        header { margin-top: 40px; margin-bottom: 20px; text-align: center; }
-        .baslik { font-size: 2.5rem; letter-spacing: 5px; text-shadow: 0 0 15px #007bff; border-bottom: 2px solid #007bff; padding-bottom: 10px; display: inline-block; }
         
-        .cekilis-yonlendirme-btn { display: inline-block; background: linear-gradient(45deg, #007bff, #00d2ff); color: white; text-decoration: none; padding: 15px 35px; border-radius: 50px; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px; box-shadow: 0 0 20px rgba(0, 123, 255, 0.6); border: 2px solid transparent; transition: all 0.3s ease; }
-        .cekilis-yonlendirme-btn i { margin-right: 8px; }
-        .cekilis-yonlendirme-btn:hover { transform: scale(1.1); box-shadow: 0 0 35px rgba(0, 123, 255, 0.9); border-color: white; }
+        /* Bilgi Şeridi */
+        .bilgi-seridi { width: 100%; background-color: #007bff; color: white; text-align: center; padding: 12px 0; font-size: 1rem; font-weight: 500; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); position: relative; z-index: 10; }
+        
+        /* Arka Plan Ayarları */
+        body { 
+            background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: -1; }
 
-        /* GERİ SAYIM TASARIMI */
-        .geri-sayim-alani { margin-top: 35px; text-align: center; background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 20px; border: 1px solid rgba(0, 123, 255, 0.3); backdrop-filter: blur(10px); display: inline-block; }
-        .sayac-baslik { font-size: 0.85rem; color: #ddd; letter-spacing: 3px; margin-top: 0; margin-bottom: 15px; text-transform: uppercase; }
+        /* Üst Bölüm: Buton ve Geri Sayım */
+        .ust-aksiyon-alani {
+            margin-top: 30px;
+            text-align: center;
+            z-index: 5;
+        }
+
+        .cekilis-yonlendirme-btn { 
+            display: inline-block; 
+            background: linear-gradient(45deg, #007bff, #00d2ff); 
+            color: white; 
+            text-decoration: none; 
+            padding: 18px 45px; 
+            border-radius: 50px; 
+            font-size: 1.3rem; 
+            font-weight: bold; 
+            letter-spacing: 2px; 
+            box-shadow: 0 0 30px rgba(0, 123, 255, 0.5); 
+            border: 2px solid transparent; 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            margin-bottom: 25px;
+        }
+        .cekilis-yonlendirme-btn:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(0, 123, 255, 0.8); border-color: white; }
+
+        /* Geri Sayım Tasarımı */
+        .geri-sayim-alani { 
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 25px 40px; 
+            border-radius: 30px; 
+            border: 1px solid rgba(0, 123, 255, 0.4); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            display: inline-block;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .sayac-baslik { font-size: 0.9rem; color: #00d2ff; letter-spacing: 4px; margin-bottom: 20px; text-transform: uppercase; font-weight: bold; }
         .sayac-merkez { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .ust-birim span { font-size: 4rem; font-weight: bold; color: #00d2ff; text-shadow: 0 0 15px rgba(0, 123, 255, 0.8); line-height: 1; display: block; }
-        .ust-birim small { font-size: 0.9rem; letter-spacing: 2px; color: #aaa; }
-        .alt-birimler { display: flex; gap: 25px; justify-content: center; }
-        .alt-birim span { font-size: 2rem; font-weight: bold; color: #00d2ff; margin-right: 5px; }
-        .alt-birim small { font-size: 0.8rem; letter-spacing: 1px; color: #aaa; text-transform: uppercase; }
+        .ust-birim span { font-size: 4.5rem; font-weight: bold; color: white; text-shadow: 0 0 20px rgba(0, 123, 255, 1); line-height: 1; }
+        .ust-birim small { font-size: 1rem; color: #aaa; letter-spacing: 2px; }
+        .alt-birimler { display: flex; gap: 30px; margin-top: 10px; }
+        .alt-birim span { font-size: 2.2rem; font-weight: bold; color: #00d2ff; }
+        .alt-birim small { font-size: 0.8rem; color: #777; display: block; margin-top: 5px; }
 
-        .konteynir { display: flex; justify-content: center; gap: 30px; width: 90%; max-width: 1200px; padding: 20px; }
-        .kart { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px; padding: 40px 30px; flex: 1; text-align: center; transition: all 0.4s ease; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8); }
-        .kart:hover { transform: translateY(-15px); border-color: #007bff; box-shadow: 0 0 25px rgba(0, 123, 255, 0.4); background: rgba(255, 255, 255, 0.08); }
-        .profil-foto { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #007bff; margin-bottom: 20px; transition: transform 0.3s ease; }
-        .profil-foto:hover { transform: scale(1.1); }
-        .kart h2 { font-size: 1.8rem; margin-bottom: 30px; font-weight: 400; }
-        .iletisim-baglantilari { display: flex; flex-direction: column; gap: 15px; }
-        .iletisim-baglantilari a { color: #fff; text-decoration: none; background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 12px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid transparent; }
-        .iletisim-baglantilari a:hover { background: #007bff; border-color: #fff; transform: scale(1.05); }
-        @media (max-width: 900px) { .konteynir { flex-direction: column; align-items: center; } .kart { width: 100%; max-width: 350px; } }
+        /* Başlık Bölümü (Resimlerin Üstünde) */
+        header { margin-top: 60px; margin-bottom: 40px; text-align: center; }
+        .baslik { 
+            font-size: 2.8rem; 
+            letter-spacing: 8px; 
+            text-shadow: 0 0 20px #007bff; 
+            border-bottom: 3px solid #007bff; 
+            padding-bottom: 15px; 
+            display: inline-block; 
+            font-weight: bold;
+        }
+
+        /* Ekip Kartları */
+        .konteynir { display: flex; justify-content: center; gap: 30px; width: 95%; max-width: 1200px; padding: 20px; margin-bottom: 50px; }
+        .kart { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 25px; 
+            padding: 40px 30px; 
+            flex: 1; 
+            text-align: center; 
+            transition: all 0.4s ease; 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); 
+        }
+        .kart:hover { transform: translateY(-15px); border-color: #007bff; box-shadow: 0 0 30px rgba(0, 123, 255, 0.4); }
+        .profil-foto { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #007bff; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0,123,255,0.5); }
+        .kart h2 { font-size: 1.8rem; margin-bottom: 25px; font-weight: 500; }
+        
+        .iletisim-baglantilari { display: flex; flex-direction: column; gap: 12px; }
+        .iletisim-baglantilari a { 
+            color: #fff; 
+            text-decoration: none; 
+            background: rgba(255, 255, 255, 0.08); 
+            padding: 12px; 
+            border-radius: 12px; 
+            transition: 0.3s; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+        }
+        .iletisim-baglantilari a:hover { background: #007bff; transform: scale(1.05); }
+
+        @media (max-width: 900px) { 
+            .konteynir { flex-direction: column; align-items: center; } 
+            .kart { width: 100%; max-width: 350px; } 
+            .ust-birim span { font-size: 3.5rem; }
+        }
     </style>
 </head>
 <body>
 
     <div class="bilgi-seridi">
-        <i class="fas fa-info-circle"></i> Modif AI platformu geliştirme aşamasındadır. Ana sitemiz çok yakında yayında!
+        <i class="fas fa-info-circle"></i> Modif-AI platformu geliştirme aşamasındadır. Ana sitemiz çok yakında yayında!
     </div>
 
     <div class="garaj-katmani"></div>
 
-    <header>
-        <h1 class="baslik">MODIF AI EKİBİ</h1>
-        
-        <div style="text-align: center; margin-top: 25px;">
-            <a href="cekilis.html" class="cekilis-yonlendirme-btn">
-                <i class="fas fa-ticket-alt"></i> ÇEKİLİŞE KATIL
-            </a>
-        </div>
-
+    <div class="ust-aksiyon-alani">
+        <a href="cekilis.html" class="cekilis-yonlendirme-btn">
+            <i class="fas fa-ticket-alt"></i> ÇEKİLİŞE KATIL
+        </a>
+        <br>
         <div class="geri-sayim-alani" id="sayac_alani_dugum">
-            <p class="sayac-baslik">Çekilişe Kalan Süre</p>
+            <p class="sayac-baslik">Büyük Çekilişe Kalan Süre</p>
             <div class="sayac-merkez">
                 <div class="ust-birim">
                     <span id="gun_dugum">0</span>
@@ -81,6 +154,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <header>
+        <h1 class="baslik">MODIF-AI EKİBİ</h1>
     </header>
 
     <div class="konteynir">
@@ -116,7 +193,7 @@
     </div>
 
     <script>
-        // Hedef tarih ve saat Türkiye (+03:00) saat dilimine göre ayarlandı
+        // Hedef: 13 Mayıs 17:00 Türkiye Saati (+03:00)
         const hedefTarih = new Date("May 13, 2026 17:00:00 +0300").getTime(); 
 
         const sayacGecici = setInterval(function() {
@@ -125,7 +202,7 @@
 
             if (kalanZaman < 0) {
                 clearInterval(sayacGecici);
-                document.getElementById("sayac_alani_dugum").innerHTML = "<h2 style='color:#00ff00; margin:0; text-shadow: 0 0 10px #00ff00;'>ÇEKİLİŞ BAŞLADI!</h2>";
+                document.getElementById("sayac_alani_dugum").innerHTML = "<h2 style='color:#00ff00; margin:0; text-shadow: 0 0 15px #00ff00;'>ÇEKİLİŞ BAŞLADI!</h2>";
                 return;
             }
 
