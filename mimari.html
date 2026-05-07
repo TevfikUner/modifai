@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modif-AI - Sistem Mimarisi</title>
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; }
+        body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
+        .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
+        
+        .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; }
+        .ust-menu-sol { display: flex; align-items: center; gap: 15px; }
+        .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
+        .ust-menu-baslik { font-size: 1.5rem; font-weight: bold; letter-spacing: 3px; color: white; }
+        .hamburger-buton { font-size: 1.8rem; color: white; cursor: pointer; transition: 0.3s; }
+        .hamburger-buton:hover { color: #00d2ff; transform: scale(1.1); }
+        .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; box-shadow: 10px 0 30px rgba(0,0,0,0.8); z-index: 1000; transition: left 0.4s ease; display: flex; flex-direction: column; padding-top: 80px; }
+        .menu-kapat-buton { position: absolute; top: 25px; right: 25px; font-size: 2rem; color: white; cursor: pointer; }
+        .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; padding: 20px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; align-items: center; gap: 15px; }
+        .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); padding-left: 40px; color: #00d2ff; border-left: 5px solid #00d2ff; }
+
+        .sayfa-baslik { text-align: center; font-size: 2.5rem; letter-spacing: 5px; text-shadow: 0 0 15px #007bff; margin: 50px 0 30px; }
+        
+        .mimari-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; width: 90%; max-width: 1200px; margin: 0 auto 50px; }
+        .mimari-kart { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 30px; transition: 0.4s; position: relative; overflow: hidden; }
+        .mimari-kart:hover { transform: translateY(-10px); border-color: #00d2ff; box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2); }
+        .mimari-ikon { font-size: 3rem; color: #00d2ff; margin-bottom: 20px; }
+        .mimari-kart h3 { font-size: 1.5rem; margin-top: 0; color: white; letter-spacing: 1px; border-bottom: 1px solid #007bff; padding-bottom: 10px; }
+        .mimari-kart p { color: #ccc; line-height: 1.6; font-size: 1rem; }
+        .mimari-kart ul { padding-left: 20px; color: #aaa; }
+        .mimari-kart li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="garaj-katmani"></div>
+
+    <nav class="ust-menu-cubugu">
+        <div class="ust-menu-sol">
+            <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
+            <span class="ust-menu-baslik">MODIF-AI</span>
+        </div>
+        <i class="fas fa-bars hamburger-buton" onclick="menuKontrol()"></i>
+    </nav>
+
+    <div id="yan_menu_dugum" class="yan-menu">
+        <i class="fas fa-times menu-kapat-buton" onclick="menuKontrol()"></i>
+        <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
+        <a href="detaylar.html"><i class="fas fa-rocket"></i> Proje Detayları</a>
+        <a href="mimari.html"><i class="fas fa-server"></i> Sistem Mimarisi</a>
+        <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
+        <a href="cekilis.html"><i class="fas fa-gift"></i> Büyük Çekiliş</a>
+    </div>
+
+    <h1 class="sayfa-baslik">TEKNOLOJİK ALTYAPI</h1>
+
+    <div class="mimari-grid">
+        <div class="mimari-kart">
+            <i class="fas fa-mobile-alt mimari-ikon"></i>
+            <h3>Frontend (Kullanıcı Arayüzü)</h3>
+            <p>Kullanıcıların araç fotoğraflarını yükleyip modifikasyonları canlı izleyebildiği akıcı ve dinamik arayüz.</p>
+            <ul>
+                <li>Mobil platformlar için <b>Flutter</b> altyapısı.</li>
+                <li>Hızlı tepkime süresi ve animasyonlar.</li>
+                <li>Web arayüzü için modern HTML5/CSS3 ve Glassmorphism.</li>
+            </ul>
+        </div>
+
+        <div class="mimari-kart">
+            <i class="fas fa-database mimari-ikon"></i>
+            <h3>Backend (Sunucu & Veritabanı)</h3>
+            <p>Sistemin kalbini oluşturan, veri iletişimini ve performans yükünü kaldıran sunucu mimarisi.</p>
+            <ul>
+                <li>Yüksek performanslı API yönetimi için <b>FastAPI</b>.</li>
+                <li>Karmaşık veri analizi ve işlemler için <b>Python</b>.</li>
+                <li>Kullanıcı ve kredi verilerinin güvenliği için <b>PostgreSQL</b>.</li>
+            </ul>
+        </div>
+
+        <div class="mimari-kart">
+            <i class="fas fa-brain mimari-ikon"></i>
+            <h3>AI & Görüntü İşleme</h3>
+            <p>Yüklenen 2D fotoğrafların derinlik analizini yaparak araç hatlarını çıkaran yapay zeka motoru.</p>
+            <ul>
+                <li>Gelişmiş <b>Derinlik Analizi</b> (Depth Analysis) algoritmaları.</li>
+                <li>Otomatik parça tanıma ve sınıflandırma.</li>
+                <li>Renk ve doku segmentasyonu.</li>
+            </ul>
+        </div>
+
+        <div class="mimari-kart">
+            <i class="fas fa-cubes mimari-ikon"></i>
+            <h3>3D Modelleme & Render</h3>
+            <p>Aracın fiziksel sınırlarına uygun olarak yeni parçaların (jant, spoiler) sanal ortama oturtulması.</p>
+            <ul>
+                <li>Gerçek zamanlı 3D obje entegrasyonu.</li>
+                <li>Işık ve gölge hesaplamaları ile gerçekçi render.</li>
+                <li>Otomatik ölçeklendirme ve hizalama.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function menuKontrol() {
+            let dugum = document.getElementById("yan_menu_dugum");
+            dugum.style.left = (dugum.style.left === "0px") ? "-320px" : "0px";
+        }
+    </script>
+</body>
+</html>
