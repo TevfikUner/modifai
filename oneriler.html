@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modif-AI - Önerileriniz</title>
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; }
+        body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
+        .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: -1; }
+        
+        /* Ortak Menü CSS */
+        .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; }
+        .ust-menu-sol { display: flex; align-items: center; gap: 15px; }
+        .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
+        .ust-menu-baslik { font-size: 1.5rem; font-weight: bold; letter-spacing: 3px; color: white; }
+        .hamburger-buton { font-size: 1.8rem; color: white; cursor: pointer; transition: 0.3s; }
+        .hamburger-buton:hover { color: #00d2ff; transform: scale(1.1); }
+        .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; box-shadow: 10px 0 30px rgba(0,0,0,0.8); z-index: 1000; transition: left 0.4s ease; display: flex; flex-direction: column; padding-top: 80px; }
+        .menu-kapat-buton { position: absolute; top: 25px; right: 25px; font-size: 2rem; color: white; cursor: pointer; }
+        .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; padding: 20px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; align-items: center; gap: 15px; }
+        .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); padding-left: 40px; color: #00d2ff; border-left: 5px solid #00d2ff; }
+
+        /* Form CSS */
+        .form-konteynir { display: flex; flex-direction: column; align-items: center; margin-top: 50px; padding: 20px; }
+        .form-kutusu { background: rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 20px; border: 1px solid #007bff; width: 100%; max-width: 500px; backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.7); }
+        .form-kutusu h2 { color: #00d2ff; margin-top: 0; text-align: center; font-size: 1.5rem; letter-spacing: 1px; }
+        .form-kutusu p { text-align: center; color: #ccc; margin-bottom: 25px; font-size: 0.9rem; }
+        .girdi-alani { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(0,0,0,0.5); color: white; font-size: 1rem; box-sizing: border-box; font-family: inherit; }
+        textarea.girdi-alani { resize: vertical; min-height: 120px; }
+        .gonder-btn { background: linear-gradient(45deg, #007bff, #00d2ff); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .gonder-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0,123,255,0.6); }
+        #sonuc_dugum { text-align: center; margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="garaj-katmani"></div>
+
+    <nav class="ust-menu-cubugu">
+        <div class="ust-menu-sol">
+            <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
+            <span class="ust-menu-baslik">MODIF-AI</span>
+        </div>
+        <i class="fas fa-bars hamburger-buton" onclick="menuKontrol()"></i>
+    </nav>
+
+    <div id="yan_menu_dugum" class="yan-menu">
+        <i class="fas fa-times menu-kapat-buton" onclick="menuKontrol()"></i>
+        <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
+        <a href="detaylar.html"><i class="fas fa-rocket"></i> Proje Detayları</a>
+        <a href="mimari.html"><i class="fas fa-server"></i> Sistem Mimarisi</a>
+        <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
+        <a href="cekilis.html"><i class="fas fa-gift"></i> Büyük Çekiliş</a>
+    </div>
+
+    <div class="form-konteynir">
+        <div class="form-kutusu">
+            <h2>MODIF-AI İlk Olarak Hangi Özellik Gelmeli?</h2>
+            <p>Sistemde görmek istediğiniz özellikleri veya önerilerinizi bizimle paylaşın.</p>
+            
+            <input type="text" id="isim_dugum" class="girdi-alani" placeholder="Adınız Soyadınız">
+            <input type="text" id="konu_dugum" class="girdi-alani" placeholder="Konu (Örn: Jant Ekleme, Performans)">
+            <textarea id="mesaj_dugum" class="girdi-alani" placeholder="Öneriniz veya Şikayetiniz..."></textarea>
+            
+            <button id="gonder_btn" class="gonder-btn"><i class="fas fa-paper-plane"></i> GÖNDER</button>
+            <div id="sonuc_dugum"></div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAK-Qt0nT_zF6neKPCRyE-4vgFFW91ZadY",
+            authDomain: "modifai-cekilis.firebaseapp.com",
+            projectId: "modifai-cekilis",
+            storageBucket: "modifai-cekilis.firebasestorage.app",
+            messagingSenderId: "569243536908",
+            appId: "1:569243536908:web:b263e448504ce865b3a829",
+            measurementId: "G-FPEN5Q8MZS"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.getElementById("gonder_btn").addEventListener("click", async function() {
+            let a = document.getElementById("isim_dugum").value;
+            let b = document.getElementById("konu_dugum").value;
+            let gecici = document.getElementById("mesaj_dugum").value;
+            let sonuc = document.getElementById("sonuc_dugum");
+
+            if(a !== "" && b !== "" && gecici !== "") {
+                sonuc.innerText = "Gönderiliyor...";
+                sonuc.style.color = "#ffcc00";
+                try {
+                    await addDoc(collection(db, "oneriler"), { isim: a, konu: b, mesaj: gecici, tarih: new Date() });
+                    sonuc.innerText = "Öneriniz başarıyla alındı! Teşekkür ederiz.";
+                    sonuc.style.color = "#00ff00";
+                    document.getElementById("isim_dugum").value = ""; document.getElementById("konu_dugum").value = ""; document.getElementById("mesaj_dugum").value = "";
+                } catch(e) {
+                    sonuc.innerText = "Bir hata oluştu. Lütfen tekrar deneyin.";
+                    sonuc.style.color = "red";
+                }
+            } else {
+                sonuc.innerText = "Lütfen tüm alanları doldurun.";
+                sonuc.style.color = "red";
+            }
+        });
+
+        window.menuKontrol = function() {
+            let dugum = document.getElementById("yan_menu_dugum");
+            dugum.style.left = (dugum.style.left === "0px") ? "-320px" : "0px";
+        }
+    </script>
+</body>
+</html>
