@@ -6,15 +6,13 @@
     <title>Modif-AI - Ekibimiz</title>
     
     <link rel="icon" href="logo.jpg" type="image/jpeg">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Smooth Scroll Eklentisi */
         html { scroll-behavior: smooth; }
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; }
         
-        .bilgi-seridi { width: 100%; background-color: #007bff; color: white; text-align: center; padding: 12px 0; font-size: 1rem; font-weight: 500; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); position: relative; z-index: 10; }
+        .bilgi-seridi { width: 100%; background-color: #007bff; color: white; text-align: center; padding: 12px 0; font-size: 1rem; font-weight: 500; letter-spacing: 1px; position: relative; z-index: 1000; }
         
         body { 
             background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); 
@@ -27,7 +25,61 @@
         }
         .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: -1; }
 
-        .ust-aksiyon-alani { margin-top: 30px; text-align: center; z-index: 5; }
+        /* ÜST MENÜ ÇUBUĞU (NAVBAR) */
+        .ust-menu-cubugu {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 123, 255, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            z-index: 900;
+        }
+        .ust-menu-sol { display: flex; align-items: center; gap: 15px; }
+        .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
+        .ust-menu-baslik { font-size: 1.5rem; font-weight: bold; letter-spacing: 3px; color: white; }
+        .hamburger-buton { font-size: 1.8rem; color: white; cursor: pointer; transition: 0.3s; }
+        .hamburger-buton:hover { color: #00d2ff; transform: scale(1.1); }
+
+        /* SOLDAN AÇILAN YAN MENÜ */
+        .yan-menu {
+            position: fixed;
+            top: 0;
+            left: -320px; /* Başlangıçta gizli */
+            width: 300px;
+            height: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-right: 2px solid #007bff;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.8);
+            z-index: 1000;
+            transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px;
+        }
+        .menu-kapat-buton { position: absolute; top: 25px; right: 25px; font-size: 2rem; color: white; cursor: pointer; transition: 0.3s; }
+        .menu-kapat-buton:hover { color: red; transform: rotate(90deg); }
+        .yan-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); padding-left: 40px; color: #00d2ff; border-left: 5px solid #00d2ff; }
+
+        /* ANA İÇERİK */
+        #ust_kisim { margin-top: 30px; text-align: center; z-index: 5; }
 
         .cekilis-yonlendirme-btn { 
             display: inline-block; 
@@ -46,16 +98,7 @@
         }
         .cekilis-yonlendirme-btn:hover { transform: scale(1.1); box-shadow: 0 0 50px rgba(0, 123, 255, 0.8); border-color: white; }
 
-        .geri-sayim-alani { 
-            background: rgba(255, 255, 255, 0.05); 
-            padding: 25px 40px; 
-            border-radius: 30px; 
-            border: 1px solid rgba(0, 123, 255, 0.4); 
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            display: inline-block;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
+        .geri-sayim-alani { background: rgba(255, 255, 255, 0.05); padding: 25px 40px; border-radius: 30px; border: 1px solid rgba(0, 123, 255, 0.4); backdrop-filter: blur(15px); display: inline-block; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
         .sayac-baslik { font-size: 0.9rem; color: #00d2ff; letter-spacing: 4px; margin-bottom: 20px; text-transform: uppercase; font-weight: bold; }
         .sayac-merkez { display: flex; flex-direction: column; align-items: center; gap: 15px; }
         .ust-birim span { font-size: 4.5rem; font-weight: bold; color: white; text-shadow: 0 0 20px rgba(0, 123, 255, 1); line-height: 1; }
@@ -64,7 +107,6 @@
         .alt-birim span { font-size: 2.2rem; font-weight: bold; color: #00d2ff; }
         .alt-birim small { font-size: 0.8rem; color: #777; display: block; margin-top: 5px; }
 
-        /* Vizyon & Misyon Tasarımı */
         .vizyon-misyon-alani { display: flex; justify-content: center; gap: 30px; width: 95%; max-width: 1200px; margin: 50px auto 20px; z-index: 5; }
         .v-m-kutu { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 35px 30px; flex: 1; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: all 0.4s ease; }
         .v-m-kutu:hover { transform: translateY(-5px); box-shadow: 0 0 25px rgba(0, 123, 255, 0.3); }
@@ -78,26 +120,16 @@
         header { margin-top: 50px; margin-bottom: 40px; text-align: center; }
         .baslik { font-size: 2.8rem; letter-spacing: 8px; text-shadow: 0 0 20px #007bff; border-bottom: 3px solid #007bff; padding-bottom: 15px; display: inline-block; font-weight: bold; }
 
-        /* Ekip Kartları ve Gelişmiş Hover */
         .konteynir { display: flex; justify-content: center; gap: 30px; width: 95%; max-width: 1200px; padding: 20px; margin-bottom: 50px; }
         .kart { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 25px; padding: 40px 30px; flex: 1; text-align: center; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7); }
-        
-        .kart:hover { 
-            transform: translateY(-20px) scale(1.05); 
-            border-color: #00d2ff; 
-            box-shadow: 0 0 45px rgba(0, 210, 255, 0.6); 
-        }
-        
+        .kart:hover { transform: translateY(-20px) scale(1.05); border-color: #00d2ff; box-shadow: 0 0 45px rgba(0, 210, 255, 0.6); }
         .profil-foto { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #007bff; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0,123,255,0.5); transition: 0.3s; }
         .kart:hover .profil-foto { border-color: #00d2ff; box-shadow: 0 0 25px rgba(0,210,255,0.8); }
-        
         .kart h2 { font-size: 1.8rem; margin-bottom: 25px; font-weight: 500; }
-        
         .iletisim-baglantilari { display: flex; flex-direction: column; gap: 12px; }
         .iletisim-baglantilari a { color: #fff; text-decoration: none; background: rgba(255, 255, 255, 0.08); padding: 12px; border-radius: 12px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .iletisim-baglantilari a:hover { background: #007bff; transform: scale(1.05); }
 
-        /* Footer Ayarları */
         footer { margin-top: auto; padding: 30px 20px; background: rgba(0,0,0,0.8); border-top: 1px solid #007bff; width: 100%; text-align: center; box-sizing: border-box; z-index: 5; }
         .footer-metin { color: #888; font-size: 0.95rem; letter-spacing: 1px; }
         .footer-metin span { color: #00d2ff; font-weight: bold; }
@@ -116,9 +148,26 @@
         <i class="fas fa-info-circle"></i> Modif-AI platformu geliştirme aşamasındadır. Ana sitemiz çok yakında yayında!
     </div>
 
+    <nav class="ust-menu-cubugu">
+        <div class="ust-menu-sol">
+            <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
+            <span class="ust-menu-baslik">MODIF-AI</span>
+        </div>
+        <i class="fas fa-bars hamburger-buton" onclick="menuKontrol()"></i>
+    </nav>
+
+    <div id="yan_menu_dugum" class="yan-menu">
+        <i class="fas fa-times menu-kapat-buton" onclick="menuKontrol()"></i>
+        <a href="#ust_kisim" onclick="menuKontrol()"><i class="fas fa-home"></i> Ana Sayfa</a>
+        <a href="#" onclick="projeDetayiGoster(); menuKontrol();"><i class="fas fa-microchip"></i> Nasıl Çalışır?</a>
+        <a href="cekilis.html"><i class="fas fa-gift"></i> Büyük Çekiliş</a>
+        <a href="#ekip_alani" onclick="menuKontrol()"><i class="fas fa-users"></i> Geliştirici Ekip</a>
+        <a href="#iletisim_alani" onclick="menuKontrol()"><i class="fas fa-envelope"></i> İletişim & Haklar</a>
+    </div>
+
     <div class="garaj-katmani"></div>
 
-    <div class="ust-aksiyon-alani">
+    <div id="ust_kisim" class="ust-aksiyon-alani">
         <a href="cekilis.html" class="cekilis-yonlendirme-btn">
             <i class="fas fa-ticket-alt"></i> ÇEKİLİŞE KATIL
         </a>
@@ -159,7 +208,7 @@
         </div>
     </div>
 
-    <header>
+    <header id="ekip_alani">
         <h1 class="baslik">MODIF-AI EKİBİ</h1>
     </header>
 
@@ -173,7 +222,6 @@
                 <a href="https://github.com/TevfikUner" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </div>
         </div>
-
         <div class="kart">
             <img src="emirhan.jpeg" alt="Emirhan Kar" class="profil-foto">
             <h2>Emirhan Kar</h2>
@@ -183,7 +231,6 @@
                 <a href="https://github.com/EmirhanKar" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </div>
         </div>
-
         <div class="kart">
             <img src="furkan.jpeg" alt="Furkan Genç" class="profil-foto">
             <h2>Furkan Genç</h2>
@@ -195,16 +242,30 @@
         </div>
     </div>
 
-    <footer>
+    <footer id="iletisim_alani">
         <p class="footer-metin">
             &copy; 2026 <span>MODIF-AI</span>. Tüm Hakları Saklıdır. | Designed & Developed by Modif-AI Team
         </p>
     </footer>
 
     <script>
-        // Hedef: 13 Mayıs 2026 17:00 Türkiye Saati (+03:00)
-        const hedefTarih = new Date("May 13, 2026 17:00:00 +0300").getTime(); 
+        // YAN MENÜ KONTROL SİSTEMİ
+        function menuKontrol() {
+            let dugum = document.getElementById("yan_menu_dugum");
+            if(dugum.style.left === "0px") {
+                dugum.style.left = "-320px";
+            } else {
+                dugum.style.left = "0px";
+            }
+        }
 
+        // PROJE DETAYI MESAJI
+        function projeDetayiGoster() {
+            alert("⚙️ MODIF-AI NASIL ÇALIŞIR?\n\n1. Aracınızın fotoğrafını sisteme yüklersiniz.\n2. Yapay Zeka (AI) motorumuz aracı analiz edip 3D modele dönüştürür.\n3. Sanal garajımızda binlerce modifiye parçasını aracınıza anında uygulayıp test edersiniz.\n\nSınırları zorlamak için çok yakında yayındayız!");
+        }
+
+        // GERİ SAYIM SAYACI
+        const hedefTarih = new Date("May 13, 2026 17:00:00 +0300").getTime(); 
         const sayacGecici = setInterval(function() {
             const simdi = new Date().getTime();
             const kalanZaman = hedefTarih - simdi;
@@ -224,7 +285,6 @@
             document.getElementById("saat_dugum").innerText = saat < 10 ? "0" + saat : saat;
             document.getElementById("dakika_dugum").innerText = dakika < 10 ? "0" + dakika : dakika;
             document.getElementById("saniye_dugum").innerText = saniye < 10 ? "0" + saniye : saniye;
-
         }, 1000); 
     </script>
 </body>
