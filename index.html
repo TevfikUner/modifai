@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr"> 
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,6 +82,20 @@
         .footer-metin { color: #bbb; font-size: 1rem; font-weight: 500; letter-spacing: 1px; transition: 0.3s; }
         .footer-metin span { color: white; font-weight: 800; transition: 0.3s; }
 
+        /* --- YENİ EKLENEN: SAYFA YÜKLEYİCİ (PRELOADER) STİLLERİ --- */
+        #sayfa_yukleyici { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050505; z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.8s ease, visibility 0.8s ease; }
+        .yukleyici-logo { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #007bff; box-shadow: 0 0 20px #007bff, 0 0 50px #00d2ff; animation: nefes_alma 1.2s infinite alternate; margin-bottom: 25px; }
+        .yukleyici-metin { color: #00d2ff; font-size: 1.2rem; font-weight: 800; letter-spacing: 5px; text-shadow: 0 0 15px rgba(0, 210, 255, 0.8); animation: yazi_parlama 1.2s infinite alternate; }
+        
+        @keyframes nefes_alma {
+            0% { transform: scale(0.9); box-shadow: 0 0 15px #007bff, 0 0 30px #00d2ff; }
+            100% { transform: scale(1.1); box-shadow: 0 0 40px #007bff, 0 0 80px #00d2ff; }
+        }
+        @keyframes yazi_parlama {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
         /* --- AÇIK TEMA KODLARI --- */
         body.acik-tema { color: #111; font-weight: 600; }
         body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.95); }
@@ -105,6 +119,9 @@
         body.acik-tema .footer-metin { color: #444; }
         body.acik-tema .footer-metin span { color: #007bff; }
         body.acik-tema .baslik { color: #111; text-shadow: none; border-bottom: 3px solid #007bff; }
+        
+        /* Açık Tema Yükleyici Arka Planı */
+        body.acik-tema #sayfa_yukleyici { background: #f4f7f6; }
 
         @media (max-width: 900px) { .konteynir, .vizyon-misyon-alani { flex-direction: column; align-items: center; } .kart { width: 100%; max-width: 350px; } }
     </style>
@@ -115,6 +132,11 @@
         let a = localStorage.getItem("tema_gecici");
         if(a === "acik") { document.body.classList.add("acik-tema"); }
     </script>
+
+    <div id="sayfa_yukleyici">
+        <img src="logo.jpg" alt="MODIF-AI" class="yukleyici-logo">
+        <div class="yukleyici-metin">SİSTEM BAŞLATILIYOR...</div>
+    </div>
 
     <div class="bilgi-seridi">
         <i class="fas fa-info-circle"></i> MODIF-AI platformu geliştirme aşamasındadır. Ana sitemiz çok yakında yayında!
@@ -258,6 +280,17 @@
             document.getElementById("dakika_dugum").innerText = dakika < 10 ? "0" + dakika : dakika;
             document.getElementById("saniye_dugum").innerText = saniye < 10 ? "0" + saniye : saniye;
         }, 1000); 
+
+        // YENİ EKLENEN: Yükleme Ekranı (Preloader) Kapatma İşlemi
+        window.addEventListener('load', function() {
+            // Sitenin hazır olması için çok kısa bir süre bekliyoruz
+            setTimeout(function() {
+                let yukleyici = document.getElementById("sayfa_yukleyici");
+                yukleyici.style.opacity = "0";
+                // Saydamlaştıktan sonra HTML'den tamamen gizliyoruz ki alttaki butonlara tıklanabilsin
+                setTimeout(() => { yukleyici.style.visibility = "hidden"; }, 800);
+            }, 1500); // Ekran 1.5 saniye boyunca tam kapasite görünsün
+        });
     </script>
 </body>
 </html>
