@@ -70,7 +70,11 @@
         .kart { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 25px; padding: 40px 30px; flex: 1; text-align: center; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8); }
         .kart:hover { transform: translateY(-20px) scale(1.05); border-color: #00d2ff; box-shadow: 0 0 45px rgba(0, 210, 255, 0.6); }
         .profil-foto { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid #007bff; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0,123,255,0.5); }
-        .kart h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 25px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); transition: 0.3s; }
+        .kart h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); transition: 0.3s; }
+        
+        /* UNVAN (Görevler) STİLİ */
+        .unvan { color: #00d2ff; font-size: 1.1rem; font-weight: 600; margin-top: 0; margin-bottom: 25px; letter-spacing: 1px; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+
         .iletisim-baglantilari a { color: #fff; font-weight: 600; text-decoration: none; background: rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 12px; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.05); }
         .iletisim-baglantilari a:hover { background: #007bff; transform: scale(1.05); border-color: #00d2ff; }
 
@@ -94,6 +98,7 @@
         body.acik-tema .alt-birim span { text-shadow: none; }
         body.acik-tema .alt-birim small { color: #555; }
         body.acik-tema .kart h2 { color: #111; text-shadow: none; }
+        body.acik-tema .unvan { color: #007bff; text-shadow: none; }
         body.acik-tema .iletisim-baglantilari a { background: #f8f9fa; color: #222; border: 1px solid #ccc; }
         
         body.acik-tema footer { background: #ffffff; border-top: 2px solid #ddd; }
@@ -136,7 +141,7 @@
         <a href="#ekip_alani" onclick="menuKontrol_dugum()"><i class="fas fa-users"></i> Geliştirici Ekip</a>
         <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
         <a href="cekilis.html"><i class="fas fa-gift"></i> Büyük Çekiliş</a>
-        <a href="sss.html"><i class="fas fa-question-circle"></i> S.S.S.</a>
+        <a href="sss.html"><i class="fas fa-question-circle"></i> SSS (Sıkça Sorulan Sorular)</a>
         <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
     </div>
 
@@ -191,6 +196,7 @@
         <div class="kart">
             <img src="tevfik.jpeg" alt="Tevfik Üner" class="profil-foto">
             <h2>Tevfik Üner</h2>
+            <p class="unvan">Frontend Developer</p>
             <div class="iletisim-baglantilari">
                 <a href="mailto:tevfikuner0@gmail.com"><i class="fas fa-envelope"></i> Mail</a>
                 <a href="https://www.linkedin.com/in/tevfikuner" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
@@ -200,6 +206,7 @@
         <div class="kart">
             <img src="emirhan.jpeg" alt="Emirhan Kar" class="profil-foto">
             <h2>Emirhan Kar</h2>
+            <p class="unvan">Backend Developer</p>
             <div class="iletisim-baglantilari">
                 <a href="mailto:emirhankar5434@gmail.com"><i class="fas fa-envelope"></i> Mail</a>
                 <a href="https://www.linkedin.com/in/emirhan-kar-9b9662208/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
@@ -209,6 +216,7 @@
         <div class="kart">
             <img src="furkan.jpeg" alt="Furkan Genç" class="profil-foto">
             <h2>Furkan Genç</h2>
+            <p class="unvan">Computer Vision Engineer</p>
             <div class="iletisim-baglantilari">
                 <a href="mailto:furkann.gencc7@gmail.com"><i class="fas fa-envelope"></i> Mail</a>
                 <a href="https://www.linkedin.com/in/furkan-gen%C3%A7-9b0784228/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
