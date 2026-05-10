@@ -113,7 +113,7 @@
             <div class="teknoloji-kart">
                 <h2 class="kart-baslik"><i class="fas fa-brain"></i> Derinlik ve Yapay Zekâ</h2>
                 <div class="kart-icerik">
-                    Tekil veya çoklu görüntülerden derinlik bilgisini çıkarmak için <span class="vurgu">Depth Anything v3</span> modeli entegre edilmiştir. Bu model, her pikselin kamera merkezine olan uzaklığını ve 3B uzaydaki yönünü eş zamanlı tahmin eder. Araç parçalarının tespiti için derin öğrenme (PyTorch) ve görüntü işleme (OpenCV) algoritmaları kullanılarak hassas bir <span class="vurgu">segmentasyon tabanlı maskeleme</span> süreci yürütülür.
+                    Tekil veya çoklu görüntülerden derinlik bilgisini çıkarmak için <span class="vurgu">Depth Anything v3</span> modeli entegre edilmiştir. Bu model, her pikselin kamera merkezine olan uzaklığını ve 3B uzaydaki yönünü eş zamanlı tahmin eder. Araç parçalarının tespiti için segmentasyon medeli ve görüntü işleme (OpenCV) algoritmaları kullanılarak hassas bir <span class="vurgu">segmentasyon tabanlı maskeleme</span> süreci yürütülür.
                 </div>
                 <div class="etiket-grubu">
                     <span class="etiket">Depth Anything v3</span>
@@ -123,14 +123,14 @@
             </div>
 
             <div class="teknoloji-kart">
-                <h2 class="kart-baslik"><i class="fas fa-cube"></i> 3B Rekonstrüksiyon</h2>
+                <h2 class="kart-baslik"><i class="fas fa-cube"></i> 3B Dönüşüm</h2>
                 <div class="kart-icerik">
                     Derinlik tahmini ile elde edilen verilerin 3 boyutlu uzaya aktarılması işleminde açık kaynaklı <span class="vurgu">Open3D</span> kütüphanesi kullanılmaktadır. Geri izdüşüm (back-projection) işlemi ile her piksel x, y, z koordinatlarına dönüştürülerek yüksek hassasiyetli <span class="vurgu">Nokta Bulutu (Point Cloud)</span> mimarisi oluşturulur. Bu yapı üzerinde gürültü azaltma ve yüzey hizalama (registration) işlemleri gerçekleştirilir.
                 </div>
                 <div class="etiket-grubu">
                     <span class="etiket">Open3D</span>
-                    <span class="etiket">Point Cloud</span>
-                    <span class="etiket">Registration</span>
+                    <span class="etiket">Numpy</span>
+                    <span class="etiket">OpenCV</span>
                 </div>
             </div>
 
