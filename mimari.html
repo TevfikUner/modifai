@@ -7,70 +7,70 @@
     <link rel="icon" href="logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow: hidden; display: flex; flex-direction: column; }
+        /* Kaydırma özelliği açıldı (overflow-y: auto) */
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; scroll-behavior: smooth; }
         body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
         .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
         
-        /* NAVBAR (Tüm sayfalarla uyumlu - Menü Solda, Logo Sağda) */
+        /* NAVBAR */
         .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; transition: 0.3s; }
-        
-        /* YENİ EKLENEN MENÜ TETİKLEYİCİ STİLLERİ (SOL TARAF) */
         .menu-tetikleyici { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .hamburger-buton { font-size: 1.8rem; color: white; transition: 0.3s; }
         .menu-tetikleyici:hover .hamburger-buton { color: #00d2ff; transform: scale(1.1); }
         .menu-yazisi { font-size: 0.75rem; font-weight: 800; color: #00d2ff; letter-spacing: 1.5px; margin-top: 4px; }
-
-        /* LOGO TIKLANABİLİR YAPILDI (SAĞ TARAF) */
         .ust-menu-sag { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
         .ust-menu-sag:hover { transform: scale(1.02); }
         .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
         .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.8); transition: 0.3s; }
 
-        /* YAN MENÜ (Açılır Kapanır Kısım) */
+        /* YAN MENÜ */
         .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; box-shadow: 10px 0 30px rgba(0,0,0,0.8); z-index: 1000; transition: left 0.4s ease, background 0.3s; display: flex; flex-direction: column; padding-top: 80px; }
         .menu-kapat-buton { position: absolute; top: 25px; right: 25px; font-size: 2rem; color: white; cursor: pointer; transition: 0.3s; }
         .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; align-items: center; gap: 15px; }
         .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); padding-left: 40px; color: #00d2ff; border-left: 5px solid #00d2ff; }
 
-        /* MERKEZİ YAZI ALANI */
-        .merkez-konteynir {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-        }
+        /* MİMARİ İÇERİK ALANI */
+        .mimari-konteynir { width: 95%; max-width: 1200px; margin: 40px auto; padding-bottom: 60px; z-index: 5; }
+        .sayfa-baslik { text-align: center; font-size: 2.8rem; font-weight: 900; letter-spacing: 4px; color: #fff; text-shadow: 0 0 20px rgba(0, 123, 255, 0.8); margin-bottom: 15px; text-transform: uppercase; }
+        .sayfa-alt-baslik { text-align: center; font-size: 1.1rem; color: #f0f0f0; max-width: 800px; margin: 0 auto 50px auto; line-height: 1.6; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
 
-        .dev-yazi {
-            font-size: 4rem; /* Kocaman font */
-            font-weight: 900;
-            color: #00d2ff;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 0 0 30px rgba(0, 210, 255, 0.6);
-            line-height: 1.2;
-            padding: 40px;
-            border: 3px solid #007bff;
-            border-radius: 30px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
+        .teknoloji-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 30px; }
+        
+        .teknoloji-kart { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(15px); border: 1px solid rgba(0, 123, 255, 0.3); border-radius: 20px; padding: 35px; transition: 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.6); position: relative; overflow: hidden; }
+        .teknoloji-kart:hover { transform: translateY(-5px); border-color: #00d2ff; box-shadow: 0 15px 40px rgba(0, 210, 255, 0.3); }
+        
+        /* Kartın üstüne neon çizgi */
+        .teknoloji-kart::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #007bff, #00d2ff); }
+
+        .kart-baslik { font-size: 1.6rem; font-weight: 800; color: #00d2ff; display: flex; align-items: center; gap: 15px; margin-top: 0; margin-bottom: 20px; letter-spacing: 1px; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .kart-baslik i { font-size: 2rem; color: white; background: linear-gradient(45deg, #007bff, #00d2ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .kart-icerik { font-size: 1.05rem; color: #ddd; line-height: 1.8; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.8); text-align: justify; }
+        .vurgu { color: #fff; font-weight: 700; border-bottom: 1px solid #00d2ff; }
+
+        .etiket-grubu { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .etiket { background: rgba(0, 123, 255, 0.2); border: 1px solid rgba(0, 123, 255, 0.5); color: #00d2ff; padding: 5px 12px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; }
 
         /* MOBİL UYUM */
         @media (max-width: 768px) {
-            .dev-yazi { font-size: 2rem; padding: 20px; letter-spacing: 2px; }
-            .ust-menu-baslik { font-size: 1.2rem; }
+            .sayfa-baslik { font-size: 2rem; }
+            .teknoloji-grid { grid-template-columns: 1fr; }
+            .teknoloji-kart { padding: 25px; }
         }
         
         /* AÇIK TEMA */
         body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.95); }
         body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.95); border-bottom: 2px solid #ccc; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-kapat-buton, body.acik-tema .menu-yazisi { color: #007bff; text-shadow: none; }
-        body.acik-tema .yan-menu { background: rgba(255, 255, 255, 0.98); }
-        body.acik-tema .yan-menu a { color: #222; border-bottom: 1px solid #ddd; font-weight: 600; }
-        body.acik-tema .dev-yazi { background: rgba(255, 255, 255, 0.9); box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-shadow: none; }
+        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-yazisi { color: #007bff; text-shadow: none; }
+        body.acik-tema .yan-menu { background: rgba(255, 255, 255, 0.98); border-right: 2px solid #007bff; }
+        body.acik-tema .yan-menu a { color: #222; border-bottom: 1px solid #ddd; }
+        body.acik-tema .sayfa-baslik { color: #111; text-shadow: none; }
+        body.acik-tema .sayfa-alt-baslik { color: #333; text-shadow: none; font-weight: 600; }
+        body.acik-tema .teknoloji-kart { background: rgba(255, 255, 255, 0.9); border: 1px solid #ccc; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        body.acik-tema .kart-baslik { color: #007bff; text-shadow: none; }
+        body.acik-tema .kart-icerik { color: #444; text-shadow: none; font-weight: 600; }
+        body.acik-tema .vurgu { color: #111; border-color: #007bff; }
+        body.acik-tema .etiket { background: #e6f2ff; border-color: #007bff; color: #007bff; }
     </style>
 </head>
 <body>
@@ -98,14 +98,67 @@
         <a href="index.html#ekip_alani"><i class="fas fa-users"></i> Geliştirici Ekip</a>
         <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
         <a href="cekilis.html"><i class="fas fa-gift"></i> Büyük Çekiliş</a>
-        <a href="sss.html"><i class="fas fa-question-circle"></i> S.S.S.</a>
+        <a href="sss.html"><i class="fas fa-question-circle"></i> SSS (Sıkça Sorulan Sorular)</a>
         <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
     </div>
 
-    <div class="merkez-konteynir">
-        <h1 class="dev-yazi">
-            BURAYA TEKNİK DETAYLAR YAZILACAK HOJULAR!
-        </h1>
+    <div class="mimari-konteynir">
+        <h1 class="sayfa-baslik">Teknoloji Altyapısı</h1>
+        <p class="sayfa-alt-baslik">
+            MODIF-AI, araç sahiplerinin fiziksel modifikasyon yapmadan önce araçları üzerinde gerçekleştirecekleri görsel değişiklikleri yüksek doğrulukla simüle edebilecekleri çok katmanlı, yapay zekâ tabanlı bir mühendislik platformudur.
+        </p>
+
+        <div class="teknoloji-grid">
+            
+            <div class="teknoloji-kart">
+                <h2 class="kart-baslik"><i class="fas fa-brain"></i> Derinlik ve Yapay Zekâ</h2>
+                <div class="kart-icerik">
+                    Tekil veya çoklu görüntülerden derinlik bilgisini çıkarmak için <span class="vurgu">Depth Anything v3</span> modeli entegre edilmiştir. Bu model, her pikselin kamera merkezine olan uzaklığını ve 3B uzaydaki yönünü eş zamanlı tahmin eder. Araç parçalarının tespiti için derin öğrenme (PyTorch) ve görüntü işleme (OpenCV) algoritmaları kullanılarak hassas bir <span class="vurgu">segmentasyon tabanlı maskeleme</span> süreci yürütülür.
+                </div>
+                <div class="etiket-grubu">
+                    <span class="etiket">Depth Anything v3</span>
+                    <span class="etiket">PyTorch</span>
+                    <span class="etiket">OpenCV</span>
+                </div>
+            </div>
+
+            <div class="teknoloji-kart">
+                <h2 class="kart-baslik"><i class="fas fa-cube"></i> 3B Rekonstrüksiyon</h2>
+                <div class="kart-icerik">
+                    Derinlik tahmini ile elde edilen verilerin 3 boyutlu uzaya aktarılması işleminde açık kaynaklı <span class="vurgu">Open3D</span> kütüphanesi kullanılmaktadır. Geri izdüşüm (back-projection) işlemi ile her piksel x, y, z koordinatlarına dönüştürülerek yüksek hassasiyetli <span class="vurgu">Nokta Bulutu (Point Cloud)</span> mimarisi oluşturulur. Bu yapı üzerinde gürültü azaltma ve yüzey hizalama (registration) işlemleri gerçekleştirilir.
+                </div>
+                <div class="etiket-grubu">
+                    <span class="etiket">Open3D</span>
+                    <span class="etiket">Point Cloud</span>
+                    <span class="etiket">Registration</span>
+                </div>
+            </div>
+
+            <div class="teknoloji-kart">
+                <h2 class="kart-baslik"><i class="fas fa-server"></i> Asenkron Backend Mimarisi</h2>
+                <div class="kart-icerik">
+                    Yüksek hesaplama maliyetli AI modelleri ile kullanıcı etkileşimini optimize etmek için <span class="vurgu">Uvicorn ASGI</span> sunucusu üzerinde asenkron <span class="vurgu">FastAPI</span> mimarisi kurgulanmıştır. Görüntü işleme hattında HEIC/WEBP formatları <span class="vurgu">Lanczos resampling</span> ile normalize edilir. Veri yönetimi, <span class="vurgu">PostgreSQL</span> ve SQLAlchemy 2.0 üzerinden selectinload stratejileriyle kurulan asenkron bağlantılarla sağlanarak N+1 problemleri minimize edilmiştir.
+                </div>
+                <div class="etiket-grubu">
+                    <span class="etiket">FastAPI</span>
+                    <span class="etiket">PostgreSQL</span>
+                    <span class="etiket">SQLAlchemy 2.0</span>
+                </div>
+            </div>
+
+            <div class="teknoloji-kart">
+                <h2 class="kart-baslik"><i class="fas fa-mobile-alt"></i> Güvenlik ve Mobil İstemci</h2>
+                <div class="kart-icerik">
+                    Güvenlik katmanında <span class="vurgu">JWT tabanlı yetkilendirme</span> ve Bcrypt şifreleme yöntemleri kullanılarak uçtan uca güvenli bir mikro-servis altyapısı sağlanmıştır. Geliştirilen REST API uç noktaları, çok platformlu <span class="vurgu">Flutter SDK</span> ile hazırlanan mobil istemci ile %100 entegre çalışarak 60-90 saniye gibi düşük gecikme sürelerinde yüksek eşzamanlı render (işleme) işlemi gerçekleştirir.
+                </div>
+                <div class="etiket-grubu">
+                    <span class="etiket">Flutter SDK</span>
+                    <span class="etiket">JWT Security</span>
+                    <span class="etiket">Microservices</span>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <script>
