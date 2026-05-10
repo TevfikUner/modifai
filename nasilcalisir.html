@@ -7,12 +7,10 @@
     <link rel="icon" href="logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Kaydırma özelliği açıldı (overflow-y: auto) */
         body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; scroll-behavior: smooth; }
         body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
         .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
         
-        /* NAVBAR */
         .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; transition: 0.3s; }
         .menu-tetikleyici { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .hamburger-buton { font-size: 1.8rem; color: white; transition: 0.3s; }
@@ -23,13 +21,11 @@
         .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
         .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.8); transition: 0.3s; }
 
-        /* YAN MENÜ */
         .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; box-shadow: 10px 0 30px rgba(0,0,0,0.8); z-index: 1000; transition: left 0.4s ease, background 0.3s; display: flex; flex-direction: column; padding-top: 80px; }
         .menu-kapat-buton { position: absolute; top: 25px; right: 25px; font-size: 2rem; color: white; cursor: pointer; transition: 0.3s; }
         .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; align-items: center; gap: 15px; }
         .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); padding-left: 40px; color: #00d2ff; border-left: 5px solid #00d2ff; }
 
-        /* İŞ AKIŞI ALANI (TIMELINE) */
         .akis-konteynir { width: 90%; max-width: 900px; margin: 40px auto; padding-bottom: 60px; z-index: 5; }
         .sayfa-baslik { text-align: center; font-size: 2.8rem; font-weight: 900; letter-spacing: 4px; color: #fff; text-shadow: 0 0 20px rgba(0, 123, 255, 0.8); margin-bottom: 15px; text-transform: uppercase; }
         .sayfa-alt-baslik { text-align: center; font-size: 1.1rem; color: #f0f0f0; max-width: 700px; margin: 0 auto 50px auto; line-height: 1.6; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
@@ -46,7 +42,6 @@
         .kart-icerik { color: #ddd; font-size: 1.05rem; line-height: 1.7; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.8); text-align: justify; }
         .vurgu { color: #fff; font-weight: 700; border-bottom: 1px dashed #00d2ff; }
 
-        /* MOBİL UYUM */
         @media (max-width: 768px) {
             .sayfa-baslik { font-size: 2.2rem; }
             .akis-cizgisi { padding-left: 40px; }
@@ -55,7 +50,6 @@
             .akis-kart { padding: 20px; }
         }
 
-        /* AÇIK TEMA */
         body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.95); }
         body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.95); border-bottom: 2px solid #ccc; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-yazisi { color: #007bff; text-shadow: none; }
@@ -79,7 +73,6 @@
             <i class="fas fa-bars hamburger-buton"></i>
             <span class="menu-yazisi">MENÜ</span>
         </div>
-        
         <a href="index.html" class="ust-menu-sag">
             <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
             <span class="ust-menu-baslik">MODIF-AI</span>
@@ -100,55 +93,57 @@
     </div>
 
     <div class="akis-konteynir">
-        <h1 class="sayfa-baslik">Sistem Algoritması</h1>
+        <h1 class="sayfa-baslik">İş Akış Algoritması</h1>
         <p class="sayfa-alt-baslik">
-            MODIF-AI, standart bir fotoğraf düzenleme aracından ziyade, yapay zeka destekli bir mühendislik ürünüdür. Sistemin arkaplanda 2D bir görseli nasıl işlediğini adım adım inceleyin.
+            MODIF-AI, mobil istemci ile asenkron sunucu altyapısını birleştiren, derin öğrenme tabanlı bir mühendislik ekosistemidir. Verinin ham fotoğraftan 3B modele dönüşüm yolculuğunu keşfedin.
         </p>
 
         <div class="akis-cizgisi">
             
             <div class="akis-kart">
                 <div class="adim-yuvarlak">1</div>
-                <h2 class="kart-baslik"><i class="fas fa-camera"></i> Görüntü Yükleme ve Ön İşleme</h2>
+                <h2 class="kart-baslik"><i class="fas fa-mobile-alt"></i> Çoklu Veri Girişi (Frontend)</h2>
                 <div class="kart-icerik">
-                    Süreç, kullanıcının araca ait tek bir fotoğrafı platforma yüklemesiyle başlar. Yüklenen görüntü, algoritmanın analiz edebilmesi için çözünürlük ve aydınlatma standartlarına göre <span class="vurgu">optimize edilerek ön işleme (preprocessing)</span> tabi tutulur.
+                    Süreç, kullanıcının <span class="vurgu">Flutter SDK</span> ile geliştirilen mobil uygulama üzerinden araca ait farklı açılardan çekilmiş <span class="vurgu">birkaç fotoğrafı</span> sisteme yüklemesiyle başlar. Görüntüler, istemci tarafında optimize edilerek güvenli bir kanal üzerinden sunucuya iletilir.
                 </div>
             </div>
 
             <div class="akis-kart">
                 <div class="adim-yuvarlak">2</div>
-                <h2 class="kart-baslik"><i class="fas fa-layer-group"></i> Derinlik Tahmini (Depth Mapping)</h2>
+                <h2 class="kart-baslik"><i class="fas fa-server"></i> Asenkron Veri İşleme (Backend)</h2>
                 <div class="kart-icerik">
-                    Ön işleme tamamlandıktan sonra, <span class="vurgu">Depth Anything v3</span> modeli devreye girer. Bu derin öğrenme modeli, 2 boyutlu (2D) fotoğrafı analiz ederek sahnedeki nesnelerin kameraya olan uzaklıklarını hesaplar ve yüksek hassasiyetli bir derinlik haritası çıkarır.
+                    Yüklenen görüntüler <span class="vurgu">FastAPI</span> tabanlı asenkron backend mimarisine ulaşır. Burada veriler, <span class="vurgu">Lanczos resampling</span> algoritmaları kullanılarak normalize edilir ve AI modellerinin giriş tensörlerine uygun formata dönüştürülür.
                 </div>
             </div>
 
             <div class="akis-kart">
                 <div class="adim-yuvarlak">3</div>
-                <h2 class="kart-baslik"><i class="fas fa-cube"></i> 3B Nokta Bulutu Oluşturma</h2>
+                <h2 class="kart-baslik"><i class="fas fa-magic"></i> Derinlik Tahmini ve 3B Analiz</h2>
                 <div class="kart-icerik">
-                    Elde edilen derinlik verileri, <span class="vurgu">Open3D</span> kütüphanesi kullanılarak uzaysal koordinatlara çevrilir. Bu aşamada, aracın düz görüntüsü hacimsel bir <span class="vurgu">Nokta Bulutu (Point Cloud)</span> mimarisine dönüştürülerek 3 boyutlu algılanabilir bir form kazanır.
+                    Normalize edilen görüntüler <span class="vurgu">Depth Anything v3</span> modeline aktarılır. Model, çoklu bakış açısı verilerini kullanarak sahnenin piksel bazlı derinlik haritalarını ve ışın yönü kestirimlerini eş zamanlı olarak hesaplar.
                 </div>
             </div>
 
             <div class="akis-kart">
                 <div class="adim-yuvarlak">4</div>
-                <h2 class="kart-baslik"><i class="fas fa-crop-alt"></i> Parça Segmentasyonu</h2>
+                <h2 class="kart-baslik"><i class="fas fa-draw-polygon"></i> 3B Rekonstrüksiyon ve Nokta Bulutu</h2>
                 <div class="kart-icerik">
-                    Oluşturulan yapı üzerinde yapay zeka destekli <span class="vurgu">segmentasyon yöntemleri</span> uygulanır. Aracın gövdesi, jantları, tamponları ve camları gibi bileşenleri sistem tarafından otomatik olarak tanınır ve birbirinden bağımsız maskeler halinde izole edilir.
+                    Hesaplanan derinlik verileri <span class="vurgu">Open3D</span> kütüphanesine aktarılarak geri izdüşüm işlemi uygulanır. Aracın 2B pikselleri, x, y, z koordinat sisteminde hacimsel bir <span class="vurgu">Nokta Bulutu (Point Cloud)</span> yapısına dönüştürülür.
                 </div>
             </div>
 
             <div class="akis-kart">
                 <div class="adim-yuvarlak">5</div>
-                <h2 class="kart-baslik"><i class="fas fa-magic"></i> Dijital Modifikasyon ve Render</h2>
+                <h2 class="kart-baslik"><i class="fas fa-check-double"></i> Segmentasyon ve Görsel Çıktı</h2>
                 <div class="kart-icerik">
-                    Son aşamada, kullanıcının seçtiği modifikasyonlar (renk değişimi, yeni jant eklentileri vb.) sadece ilgili segmentasyon bölgelerine uygulanır. Sistem, <span class="vurgu">ışık ve gölge yansımalarını</span> aslına uygun şekilde koruyarak modifiye edilmiş yüksek çözünürlüklü final görselini saniyeler içinde kullanıcıya sunar.
+                    Oluşturulan 3B yapı üzerinde parçalar izole edilir ve modifikasyonlar uygulanır. Final render işlemi tamamlandıktan sonra, işlenen yüksek çözünürlüklü veri tekrar asenkron mimari üzerinden <span class="vurgu">mobil kullanıcıya saniyeler içinde</span> ulaştırılır.
                 </div>
             </div>
 
         </div>
     </div>
+    
+    
 
     <script>
         function menuKontrol_dugum() {
@@ -158,3 +153,4 @@
     </script>
 </body>
 </html>
+
