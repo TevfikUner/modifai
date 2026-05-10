@@ -3,74 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MODIF-AI - Proje Detayları</title>
+    <title>MODIF-AI - Nasıl Çalışır</title>
     <link rel="icon" href="logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow: hidden; display: flex; flex-direction: column; }
+        /* Kaydırma özelliği açıldı (overflow-y: auto) */
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; scroll-behavior: smooth; }
         body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
         .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; }
         
-        /* NAVBAR (Tüm sayfalarla uyumlu - Menü Solda, Logo Sağda) */
+        /* NAVBAR */
         .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; transition: 0.3s; }
-        
-        /* YENİ EKLENEN MENÜ TETİKLEYİCİ STİLLERİ (SOL TARAF) */
         .menu-tetikleyici { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .hamburger-buton { font-size: 1.8rem; color: white; transition: 0.3s; }
         .menu-tetikleyici:hover .hamburger-buton { color: #00d2ff; transform: scale(1.1); }
         .menu-yazisi { font-size: 0.75rem; font-weight: 800; color: #00d2ff; letter-spacing: 1.5px; margin-top: 4px; }
-
-        /* LOGO TIKLANABİLİR YAPILDI (SAĞ TARAF) */
         .ust-menu-sag { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
         .ust-menu-sag:hover { transform: scale(1.02); }
         .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
         .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.8); transition: 0.3s; }
 
-        /* YAN MENÜ (Açılır Kapanır Kısım) */
+        /* YAN MENÜ */
         .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; box-shadow: 10px 0 30px rgba(0,0,0,0.8); z-index: 1000; transition: left 0.4s ease, background 0.3s; display: flex; flex-direction: column; padding-top: 80px; }
         .menu-kapat-buton { position: absolute; top: 25px; right: 25px; font-size: 2rem; color: white; cursor: pointer; transition: 0.3s; }
         .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; align-items: center; gap: 15px; }
         .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); padding-left: 40px; color: #00d2ff; border-left: 5px solid #00d2ff; }
 
-        /* MERKEZİ YAZI ALANI */
-        .merkez-konteynir {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-        }
+        /* İŞ AKIŞI ALANI (TIMELINE) */
+        .akis-konteynir { width: 90%; max-width: 900px; margin: 40px auto; padding-bottom: 60px; z-index: 5; }
+        .sayfa-baslik { text-align: center; font-size: 2.8rem; font-weight: 900; letter-spacing: 4px; color: #fff; text-shadow: 0 0 20px rgba(0, 123, 255, 0.8); margin-bottom: 15px; text-transform: uppercase; }
+        .sayfa-alt-baslik { text-align: center; font-size: 1.1rem; color: #f0f0f0; max-width: 700px; margin: 0 auto 50px auto; line-height: 1.6; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
 
-        .dev-yazi {
-            font-size: 4rem; /* Kocaman font */
-            font-weight: 900;
-            color: #00d2ff;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 0 0 30px rgba(0, 210, 255, 0.6);
-            line-height: 1.2;
-            padding: 40px;
-            border: 3px solid #007bff;
-            border-radius: 30px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
+        .akis-cizgisi { position: relative; padding-left: 60px; margin-top: 40px; }
+        .akis-cizgisi::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, #007bff, #00d2ff); border-radius: 5px; }
+
+        .akis-kart { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(15px); border: 1px solid rgba(0, 123, 255, 0.3); border-radius: 20px; padding: 30px; margin-bottom: 40px; position: relative; transition: 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        .akis-kart:hover { transform: translateX(10px); border-color: #00d2ff; box-shadow: 0 15px 40px rgba(0, 210, 255, 0.3); }
+
+        .adim-yuvarlak { position: absolute; left: -60px; top: 30px; width: 45px; height: 45px; background: #000; border: 4px solid #00d2ff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 900; font-size: 1.3rem; color: #00d2ff; box-shadow: 0 0 15px #00d2ff; z-index: 2; }
+
+        .kart-baslik { color: #00d2ff; font-size: 1.5rem; font-weight: 800; margin-top: 0; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); letter-spacing: 1px; display: flex; align-items: center; gap: 12px; }
+        .kart-icerik { color: #ddd; font-size: 1.05rem; line-height: 1.7; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.8); text-align: justify; }
+        .vurgu { color: #fff; font-weight: 700; border-bottom: 1px dashed #00d2ff; }
 
         /* MOBİL UYUM */
         @media (max-width: 768px) {
-            .dev-yazi { font-size: 2rem; padding: 20px; letter-spacing: 2px; }
-            .ust-menu-baslik { font-size: 1.2rem; }
+            .sayfa-baslik { font-size: 2.2rem; }
+            .akis-cizgisi { padding-left: 40px; }
+            .akis-cizgisi::before { left: 10px; }
+            .adim-yuvarlak { left: -45px; width: 35px; height: 35px; font-size: 1rem; border-width: 3px; }
+            .akis-kart { padding: 20px; }
         }
-        
+
         /* AÇIK TEMA */
         body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.95); }
         body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.95); border-bottom: 2px solid #ccc; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-kapat-buton, body.acik-tema .menu-yazisi { color: #007bff; text-shadow: none; }
+        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-yazisi { color: #007bff; text-shadow: none; }
         body.acik-tema .yan-menu { background: rgba(255, 255, 255, 0.98); }
         body.acik-tema .yan-menu a { color: #222; border-bottom: 1px solid #ddd; font-weight: 600; }
-        body.acik-tema .dev-yazi { background: rgba(255, 255, 255, 0.9); box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-shadow: none; }
+        body.acik-tema .sayfa-baslik { color: #111; text-shadow: none; }
+        body.acik-tema .sayfa-alt-baslik { color: #333; text-shadow: none; font-weight: 600; }
+        body.acik-tema .akis-kart { background: rgba(255, 255, 255, 0.9); border: 1px solid #ccc; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        body.acik-tema .kart-baslik { color: #007bff; text-shadow: none; }
+        body.acik-tema .kart-icerik { color: #444; text-shadow: none; font-weight: 600; }
+        body.acik-tema .vurgu { color: #111; border-color: #007bff; }
+        body.acik-tema .adim-yuvarlak { background: #fff; color: #007bff; border-color: #007bff; box-shadow: 0 0 10px rgba(0,123,255,0.3); }
     </style>
 </head>
 <body>
@@ -92,20 +89,65 @@
     <div id="yan_menu_dugum" class="yan-menu">
         <i class="fas fa-times menu-kapat-buton" onclick="menuKontrol_dugum()"></i>
         <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
-        <a href="detaylar.html"><i class="fas fa-rocket"></i> Proje Detayları</a>
+        <a href="nasilcalisir.html"><i class="fas fa-cogs"></i> Nasıl Çalışır</a>
         <a href="tasarimlar.html"><i class="fas fa-images"></i> Örnek Tasarımlar</a>
         <a href="mimari.html"><i class="fas fa-server"></i> Sistem Mimarisi</a>
         <a href="index.html#ekip_alani"><i class="fas fa-users"></i> Geliştirici Ekip</a>
         <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
         <a href="cekilis.html"><i class="fas fa-gift"></i> Büyük Çekiliş</a>
-        <a href="sss.html"><i class="fas fa-question-circle"></i> S.S.S.</a>
+        <a href="sss.html"><i class="fas fa-question-circle"></i> SSS (Sıkça Sorulan Sorular)</a>
         <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
     </div>
 
-    <div class="merkez-konteynir">
-        <h1 class="dev-yazi">
-            BURAYA TEKNİK DETAYLAR YAZILACAK HOJULAR!
-        </h1>
+    <div class="akis-konteynir">
+        <h1 class="sayfa-baslik">Sistem Algoritması</h1>
+        <p class="sayfa-alt-baslik">
+            MODIF-AI, standart bir fotoğraf düzenleme aracından ziyade, yapay zeka destekli bir mühendislik ürünüdür. Sistemin arkaplanda 2D bir görseli nasıl işlediğini adım adım inceleyin.
+        </p>
+
+        <div class="akis-cizgisi">
+            
+            <div class="akis-kart">
+                <div class="adim-yuvarlak">1</div>
+                <h2 class="kart-baslik"><i class="fas fa-camera"></i> Görüntü Yükleme ve Ön İşleme</h2>
+                <div class="kart-icerik">
+                    Süreç, kullanıcının araca ait tek bir fotoğrafı platforma yüklemesiyle başlar. Yüklenen görüntü, algoritmanın analiz edebilmesi için çözünürlük ve aydınlatma standartlarına göre <span class="vurgu">optimize edilerek ön işleme (preprocessing)</span> tabi tutulur.
+                </div>
+            </div>
+
+            <div class="akis-kart">
+                <div class="adim-yuvarlak">2</div>
+                <h2 class="kart-baslik"><i class="fas fa-layer-group"></i> Derinlik Tahmini (Depth Mapping)</h2>
+                <div class="kart-icerik">
+                    Ön işleme tamamlandıktan sonra, <span class="vurgu">Depth Anything v3</span> modeli devreye girer. Bu derin öğrenme modeli, 2 boyutlu (2D) fotoğrafı analiz ederek sahnedeki nesnelerin kameraya olan uzaklıklarını hesaplar ve yüksek hassasiyetli bir derinlik haritası çıkarır.
+                </div>
+            </div>
+
+            <div class="akis-kart">
+                <div class="adim-yuvarlak">3</div>
+                <h2 class="kart-baslik"><i class="fas fa-cube"></i> 3B Nokta Bulutu Oluşturma</h2>
+                <div class="kart-icerik">
+                    Elde edilen derinlik verileri, <span class="vurgu">Open3D</span> kütüphanesi kullanılarak uzaysal koordinatlara çevrilir. Bu aşamada, aracın düz görüntüsü hacimsel bir <span class="vurgu">Nokta Bulutu (Point Cloud)</span> mimarisine dönüştürülerek 3 boyutlu algılanabilir bir form kazanır.
+                </div>
+            </div>
+
+            <div class="akis-kart">
+                <div class="adim-yuvarlak">4</div>
+                <h2 class="kart-baslik"><i class="fas fa-crop-alt"></i> Parça Segmentasyonu</h2>
+                <div class="kart-icerik">
+                    Oluşturulan yapı üzerinde yapay zeka destekli <span class="vurgu">segmentasyon yöntemleri</span> uygulanır. Aracın gövdesi, jantları, tamponları ve camları gibi bileşenleri sistem tarafından otomatik olarak tanınır ve birbirinden bağımsız maskeler halinde izole edilir.
+                </div>
+            </div>
+
+            <div class="akis-kart">
+                <div class="adim-yuvarlak">5</div>
+                <h2 class="kart-baslik"><i class="fas fa-magic"></i> Dijital Modifikasyon ve Render</h2>
+                <div class="kart-icerik">
+                    Son aşamada, kullanıcının seçtiği modifikasyonlar (renk değişimi, yeni jant eklentileri vb.) sadece ilgili segmentasyon bölgelerine uygulanır. Sistem, <span class="vurgu">ışık ve gölge yansımalarını</span> aslına uygun şekilde koruyarak modifiye edilmiş yüksek çözünürlüklü final görselini saniyeler içinde kullanıcıya sunar.
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <script>
