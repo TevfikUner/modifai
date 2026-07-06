@@ -4,60 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MODIF-AI - Ayarlar</title>
+    <meta name="description" content="MODIF-AI platform ayarları - Tema, bildirim ve hesap güvenliğinizi yönetin.">
     <link rel="icon" href="logo.jpg" type="image/jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="navbar.css">
     
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; transition: 0.3s; letter-spacing: 0.5px; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #000; color: white; overflow-x: hidden; transition: 0.3s; letter-spacing: 0.3px; }
         body { background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed; }
         .garaj-katmani { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: -1; transition: 0.3s; }
 
-        .ust-menu-cubugu { width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 123, 255, 0.3); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; box-sizing: border-box; position: sticky; top: 0; z-index: 900; transition: 0.3s; }
-        
-        /* LOGO TIKLANABİLİR YAPILDI (SAĞ TARAF) */
-        .ust-menu-sag { display: flex; align-items: center; gap: 15px; text-decoration: none; cursor: pointer; transition: 0.3s; }
-        .ust-menu-sag:hover { transform: scale(1.02); }
-        .ust-menu-logo { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #007bff; }
-        .ust-menu-baslik { font-size: 1.6rem; font-weight: 800; letter-spacing: 3px; color: white; text-shadow: 0 2px 5px rgba(0,0,0,0.8); transition: 0.3s; }
-        
-        .hamburger-buton { font-size: 1.8rem; color: white; transition: 0.3s; }
-        
-        /* YENİ EKLENEN MENÜ TETİKLEYİCİ STİLLERİ (SOL TARAF) */
-        .menu-tetikleyici { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
-        .menu-tetikleyici:hover .hamburger-buton { color: #00d2ff; transform: scale(1.1); }
-        .menu-yazisi { font-size: 0.75rem; font-weight: 800; color: #00d2ff; letter-spacing: 1.5px; margin-top: 4px; }
-
-        .yan-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100%; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-right: 2px solid #007bff; box-shadow: 10px 0 30px rgba(0,0,0,0.8); z-index: 1000; transition: left 0.4s ease, background 0.3s; display: flex; flex-direction: column; padding-top: 80px; }
-        .menu-kapat-buton { position: absolute; top: 25px; right: 25px; font-size: 2rem; color: white; cursor: pointer; transition: 0.3s; }
-        .yan-menu a { color: white; text-decoration: none; font-size: 1.2rem; font-weight: 500; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; align-items: center; gap: 15px; }
-        .yan-menu a:hover { background: rgba(0, 123, 255, 0.2); padding-left: 40px; color: #00d2ff; border-left: 5px solid #00d2ff; }
-
-        .sayfa-baslik { text-align: center; font-size: 2.8rem; font-weight: 800; letter-spacing: 5px; margin: 40px 0; color: white; transition: 0.3s; text-shadow: 0 2px 15px rgba(0, 123, 255, 0.8); }
+        .sayfa-baslik { text-align: center; font-size: 2.5rem; font-weight: 900; letter-spacing: 4px; margin: 40px 0; color: white; text-shadow: 0 2px 15px rgba(0, 123, 255, 0.5); }
 
         .ayarlar-konteynir { width: 90%; max-width: 800px; margin: 0 auto 50px; }
-        .ayar-kutusu { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 15px; padding: 30px; backdrop-filter: blur(15px); display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-        .ayar-kutusu:hover { border-color: #00d2ff; box-shadow: 0 5px 20px rgba(0, 123, 255, 0.4); }
+        .ayar-kutusu { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 25px 28px; backdrop-filter: blur(15px); display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; transition: 0.3s; box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
+        .ayar-kutusu:hover { border-color: rgba(0, 210, 255, 0.3); box-shadow: 0 5px 20px rgba(0, 210, 255, 0.1); }
         
-        .ayar-bilgi h3 { margin: 0 0 8px 0; font-size: 1.4rem; font-weight: 700; color: #00d2ff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-        .ayar-bilgi p { margin: 0; color: #f0f0f0; font-size: 1.05rem; font-weight: 500; transition: 0.3s; text-shadow: 0 2px 4px rgba(0,0,0,0.8); line-height: 1.6; }
+        .ayar-bilgi h3 { margin: 0 0 6px 0; font-size: 1.2rem; font-weight: 700; color: #00d2ff; display: flex; align-items: center; gap: 10px; }
+        .ayar-bilgi h3 i { font-size: 1rem; }
+        .ayar-bilgi p { margin: 0; color: rgba(255, 255, 255, 0.6); font-size: 0.95rem; font-weight: 400; line-height: 1.6; }
 
-        .tema-buton { background: linear-gradient(45deg, #007bff, #00d2ff); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-        .tema-buton:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 123, 255, 0.8); }
+        .tema-buton { background: linear-gradient(135deg, #007bff, #00d2ff); color: white; border: none; padding: 11px 22px; border-radius: 10px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; box-shadow: 0 5px 15px rgba(0,123,255,0.25); font-family: 'Inter', sans-serif; white-space: nowrap; }
+        .tema-buton:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0, 123, 255, 0.4); }
 
-        .kapali-buton { background: rgba(255, 255, 255, 0.1); color: #ccc; border: 1px solid #555; padding: 12px 25px; border-radius: 8px; font-size: 1rem; cursor: not-allowed; font-weight: 600; }
+        .kapali-buton { background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.35); border: 1px solid rgba(255, 255, 255, 0.1); padding: 11px 22px; border-radius: 10px; font-size: 0.9rem; cursor: not-allowed; font-weight: 600; font-family: 'Inter', sans-serif; }
 
         /* AÇIK TEMA */
         body.acik-tema { color: #333; }
         body.acik-tema .garaj-katmani { background: rgba(240, 245, 255, 0.95); }
-        body.acik-tema .ust-menu-cubugu { background: rgba(255, 255, 255, 0.95); border-bottom: 2px solid #ccc; }
-        body.acik-tema .ust-menu-baslik, body.acik-tema .hamburger-buton, body.acik-tema .menu-kapat-buton, body.acik-tema .menu-yazisi { color: #007bff; text-shadow: none; }
-        body.acik-tema .yan-menu { background: rgba(255, 255, 255, 0.98); }
-        body.acik-tema .yan-menu a { color: #222; border-bottom: 1px solid #ddd; font-weight: 600; }
         body.acik-tema .sayfa-baslik { color: #111; text-shadow: none; }
-        body.acik-tema .ayar-kutusu { background: rgba(255, 255, 255, 0.9); border: 1px solid #ccc; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        body.acik-tema .ayar-bilgi h3 { color: #007bff; text-shadow: none; font-weight: 800; }
-        body.acik-tema .ayar-bilgi p { color: #333; text-shadow: none; font-weight: 600; }
-        body.acik-tema .kapali-buton { background: #eee; border: 1px solid #ddd; color: #888; }
+        body.acik-tema .ayar-kutusu { background: rgba(255, 255, 255, 0.9); border: 1px solid #ddd; box-shadow: 0 5px 15px rgba(0,0,0,0.06); }
+        body.acik-tema .ayar-bilgi h3 { color: #007bff; }
+        body.acik-tema .ayar-bilgi p { color: #555; }
+        body.acik-tema .kapali-buton { background: #f0f0f0; border: 1px solid #ddd; color: #aaa; }
     </style>
 </head>
 <body>
@@ -67,29 +48,60 @@
         if(a === "acik") { document.body.classList.add("acik-tema"); }
     </script>
 
-    <nav class="ust-menu-cubugu">
-        <div class="menu-tetikleyici" onclick="menuKontrol_dugum()">
-            <i class="fas fa-bars hamburger-buton"></i>
-            <span class="menu-yazisi">MENÜ</span>
-        </div>
-        
-        <a href="index.html" class="ust-menu-sag">
-            <img src="logo.jpg" alt="Logo" class="ust-menu-logo">
-            <span class="ust-menu-baslik">MODIF-AI</span>
+    <!-- ÜST NAVBAR -->
+    <nav class="navbar" id="main_navbar">
+        <a href="index.html" class="nav-logo">
+            <img src="logo.jpg" alt="MODIF-AI Logo">
+            <span>MODIF-AI</span>
         </a>
-    </nav>
 
-    <div id="yan_menu_dugum" class="yan-menu">
-        <i class="fas fa-times menu-kapat-buton" onclick="menuKontrol_dugum()"></i>
-        <a href="index.html"><i class="fas fa-home"></i> Ana Sayfa</a>
-        <a href="nasilcalisir.html"><i class="fas fa-cogs"></i> Nasıl Çalışır</a>
-        <a href="tasarimlar.html"><i class="fas fa-images"></i> Örnek Tasarımlar</a>
-        <a href="mimari.html"><i class="fas fa-server"></i> Sistem Mimarisi</a>
-        <a href="index.html#ekip_alani"><i class="fas fa-users"></i> Geliştirici Ekip</a>
-        <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
-        <a href="sss.html"><i class="fas fa-question-circle"></i> S.S.S.</a>
-        <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
-    </div>
+        <ul class="nav-links" id="nav_links">
+            <li class="nav-item">
+                <a href="tasarimlar.html"><i class="fas fa-cube"></i> 3D Modelleme</a>
+            </li>
+            <li class="nav-item">
+                <div class="nav-dropdown-toggle"><i class="fas fa-compass"></i> Keşfet <i class="fas fa-chevron-down dropdown-chevron"></i></div>
+                <div class="nav-dropdown">
+                    <a href="nasilcalisir.html"><i class="fas fa-cogs"></i> Nasıl Çalışır</a>
+                    <a href="mimari.html"><i class="fas fa-server"></i> Sistem Mimarisi</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="sss.html"><i class="fas fa-question-circle"></i> SSS</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="nav-dropdown-toggle"><i class="fas fa-building"></i> Hakkımızda <i class="fas fa-chevron-down dropdown-chevron"></i></div>
+                <div class="nav-dropdown">
+                    <a href="index.html#vizyon_misyon"><i class="fas fa-eye"></i> Vizyon & Misyon</a>
+                    <a href="index.html#ekip_alani"><i class="fas fa-users"></i> Geliştirici Ekip</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="oneriler.html"><i class="fas fa-lightbulb"></i> Önerileriniz</a>
+                </div>
+            </li>
+        </ul>
+
+        <div class="nav-right">
+            <button class="mobile-menu-btn" id="mobil_menu_btn"><i class="fas fa-bars"></i></button>
+            <div class="nav-notification-btn" title="Bildirimler">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge"></span>
+            </div>
+            <div class="nav-account-wrapper">
+                <div class="nav-account-btn" id="hesap_btn" title="Hesap"><i class="fas fa-user"></i></div>
+                <div class="account-dropdown" id="hesap_dropdown">
+                    <div class="account-dropdown-header">
+                        <div class="name">Kullanıcı</div>
+                        <div class="email">hesap@modifai.com</div>
+                    </div>
+                    <a href="#"><i class="fas fa-user-circle"></i> Profil</a>
+                    <a href="ayarlar.html"><i class="fas fa-cog"></i> Ayarlar</a>
+                    <button id="tema_degistir_btn"><i class="fas fa-moon"></i> Tema Değiştir</button>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="nav-overlay" id="nav_overlay"></div>
 
     <div class="garaj-katmani"></div>
 
@@ -125,12 +137,8 @@
 
     </div>
 
+    <script src="navbar.js"></script>
     <script>
-        function menuKontrol_dugum() {
-            let dugum = document.getElementById("yan_menu_dugum");
-            dugum.style.left = (dugum.style.left === "0px") ? "-320px" : "0px";
-        }
-
         function temaDegistir_dugum() {
             let b = document.body;
             b.classList.toggle("acik-tema");
@@ -144,12 +152,12 @@
             }
         }
 
-        window.onload = function() {
+        window.addEventListener("load", function() {
             let gecici = localStorage.getItem("tema_gecici");
             if(gecici === "acik") {
                 document.getElementById("tema_btn_dugum").innerHTML = '<i class="fas fa-sun"></i> Koyu Temaya Geç';
             }
-        }
+        });
     </script>
 </body>
 </html>
